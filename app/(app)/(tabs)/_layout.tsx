@@ -1,27 +1,61 @@
-import { COLORS } from "@/src/shared/constant/colors";
+import AddButton from "@/app/(app)/(tabs)/add-button";
+import { useThemeStore } from "@/src/shared/theme/store/useThemeStore";
 import { Ionicons } from "@expo/vector-icons";
-import { Tabs } from "expo-router";
+import { router, Tabs } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 
 export default function TabLayout() {
-    const {bottom} = useSafeAreaInsets();
+    const { bottom } = useSafeAreaInsets();
+    const { COLORS } = useThemeStore();
+
     return (
         <Tabs
-            screenOptions={{ 
+            screenOptions={{
                 headerShown: false,
-                tabBarActiveTintColor: COLORS.primary,
-                tabBarInactiveTintColor: COLORS.text,
-                tabBarStyle: { backgroundColor: COLORS.surface },
-                headerTintColor: COLORS.primary,
+                tabBarActiveTintColor: COLORS.text.accent,  // active bar icon color
+                tabBarInactiveTintColor: COLORS.text.disabled,  // disabled bar icon color
+                tabBarStyle: {
+                    height: 65 + bottom,
+                    backgroundColor: COLORS.background.base,  // background color
+                    borderTopColor: COLORS.border.subtle,  // border color
+                    paddingTop: 8,
+                },
             }}
-            safeAreaInsets={{bottom: bottom+12}}
+            safeAreaInsets={{ bottom: bottom + 12 }}
         >
             <Tabs.Screen
                 name="index"
                 options={{
                     tabBarIcon: ({ focused, color }) => (<Ionicons name={focused ? "home" : "home-outline"} color={color} size={24} />)
                 }}
+            />
+            <Tabs.Screen
+                name="transactions"
+                options={{
+                    tabBarIcon: ({ focused, color }) => (<Ionicons name={focused ? "list" : "list-outline"} color={color} size={24} />)
+                }}
+            />
+            <Tabs.Screen
+                name="add-button"
+                options={{
+                    tabBarIcon: ({ focused, color }) => (<Ionicons name={focused ? "add" : "add-circle"} color={color} size={40} />),
+                    tabBarButton: () => AddButton(),
+                    tabBarItemStyle: {
+                        alignItems: 'center',
+                        // position: 'relative',
+                        // top: -30
+                    },
+                    tabBarLabelStyle: { display: 'none' },
+                }}
+                listeners={{
+                    tabPress: (e) => {
+                        // NOTE: May be not working properly, but handal it on AddButton()
+                        e.preventDefault();
+                        router.push("/(app)/create");
+                    }
+                }}
+
             />
             <Tabs.Screen
                 name="analytics"

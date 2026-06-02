@@ -23,8 +23,8 @@ export default function AddButton() {
 
 const styles = StyleSheet.create({
     container: {
-        height: 57,
-        width: 57,
+        height: 50,
+        width: 50,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

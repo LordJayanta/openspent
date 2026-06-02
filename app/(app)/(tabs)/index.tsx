@@ -1,5 +1,5 @@
+import AddButton from "@/app/(app)/(tabs)/add-button";
 import { homeStyles } from "@/assets/styles/home.style";
-import AddButton from "@/src/features/transactions/components/add-button";
 import NoTransactionsFound from "@/src/features/transactions/components/no-transactions-found";
 import TransactionItem from "@/src/features/transactions/components/transaction-item";
 import TransactionActions from "@/src/features/transactions/components/TransactionActions";
