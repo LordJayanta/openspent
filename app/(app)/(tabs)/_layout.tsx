@@ -1,9 +1,11 @@
 import { COLORS } from "@/src/shared/constant/colors";
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 
 export default function TabLayout() {
+    const {bottom} = useSafeAreaInsets();
     return (
         <Tabs
             screenOptions={{ 
@@ -13,6 +15,7 @@ export default function TabLayout() {
                 tabBarStyle: { backgroundColor: COLORS.surface },
                 headerTintColor: COLORS.primary,
             }}
+            safeAreaInsets={{bottom: bottom+12}}
         >
             <Tabs.Screen
                 name="index"
