@@ -130,7 +130,7 @@ export default function Index() {
                 setIsModalOpen(!isModalOpen);
                 setSelectedTransactionId(Number(item.id));
               }}>
-                <TransactionItem data={item} />
+                <TransactionItem transaction={item} sparator/>
               </TouchableOpacity>
             )}
             keyExtractor={(item, index) => index.toString()}
