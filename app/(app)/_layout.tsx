@@ -1,8 +1,8 @@
 import LockScreen from "@/src/features/biometric-auth/components/lockScreen";
 import { useLocalAuthStore } from "@/src/features/biometric-auth/store/useLocalAuthStore";
-import { useUserStore } from "@/src/features/onboarding/store/useUserStore";
 import { useSettingStore } from "@/src/features/settings/store/useSettingStore";
 import { useTransactionStore } from "@/src/features/transactions/store/useTransactionStore";
+import { useUserStore } from "@/src/features/user/store/useUserStore";
 import PageLoader from "@/src/shared/components/page-loader";
 import { Redirect, Stack } from "expo-router";
 import { useEffect, useRef } from "react";

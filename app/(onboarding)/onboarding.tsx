@@ -3,9 +3,9 @@ import Input from '@/src/features/onboarding/components/Input';
 import OnboardScreen, { type OnboardingData } from '@/src/features/onboarding/components/OnboardScreen';
 import OnbordForm from '@/src/features/onboarding/components/OnbordForm';
 import Select from '@/src/features/onboarding/components/Select';
-import { CURRENCIES } from '@/src/features/onboarding/constant/CURRENCIES';
-import { useUserStore } from '@/src/features/onboarding/store/useUserStore';
+import { useUserStore } from '@/src/features/user/store/useUserStore';
 import { COLORS } from '@/src/shared/constant/colors';
+import { CURRENCIES } from '@/src/shared/constant/CURRENCIES';
 import { router } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { Alert, Animated, StyleSheet, useWindowDimensions, View } from 'react-native';
@@ -101,7 +101,7 @@ export default function Onboarding() {
           }}
         >
           <Select
-            value={inputData.name}
+            // value={}
             onChange={(currency) => setInputData({ ...inputData, currency })}
             options={CURRENCIES}
           />

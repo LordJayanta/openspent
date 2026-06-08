@@ -1,4 +1,4 @@
-import { useUserStore } from "@/src/features/onboarding/store/useUserStore";
+import { useUserStore } from "@/src/features/user/store/useUserStore";
 import PageLoader from "@/src/shared/components/page-loader";
 import { Stack } from "expo-router";
 

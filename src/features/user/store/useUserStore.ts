@@ -1,10 +1,12 @@
+import { CURRENCIES } from "@/src/shared/constant/CURRENCIES";
 import { type User } from "@/src/shared/db/schema";
 import { create } from "zustand";
-import { sqlite } from "../db/useSqlite";
+import { useUserDB } from "../db/useUserDB";
 
 interface Store extends User {
   // states
   isLoading: boolean;
+  currencySymbol: string;
 
   // Actions
   toggleLoading: () => void;
@@ -16,11 +18,8 @@ interface Store extends User {
     currency,
     hasFinishedOnboarding,
   }: User) => Promise<void>;
-
   updateUser: (user: User) => Promise<void>;
-
   setUserName: (id: User["id"], name: string) => Promise<void>;
-
   setCurrency: (id: User["id"], currency: string) => Promise<void>;
 }
 
@@ -28,6 +27,7 @@ export const useUserStore = create<Store>((set, get) => ({
   id: undefined,
   name: "",
   currency: "",
+  currencySymbol: "",
   hasFinishedOnboarding: false,
   isLoading: false,
 
@@ -35,9 +35,14 @@ export const useUserStore = create<Store>((set, get) => ({
 
   loadUser: async () => {
     try {
-      const res = await sqlite.getUser();
+      const res = await useUserDB.getUser();
 
-      if (res) set({ ...res });
+      if (res) {
+        const currencySymbol =
+          CURRENCIES.find((i) => i.code === res?.currency)?.symbol || "₹";
+
+        set({ ...res, currencySymbol });
+      }
     } catch (error) {
       console.error("loadUser: ", error);
     }
@@ -49,9 +54,13 @@ export const useUserStore = create<Store>((set, get) => ({
     hasFinishedOnboarding = true,
   }: User) => {
     try {
-      const userdata = { name, currency, hasFinishedOnboarding };
+      const userdata = {
+        name,
+        currency,
+        hasFinishedOnboarding,
+      };
 
-      const newUser = await sqlite.creatUser(userdata);
+      const newUser = await useUserDB.creatUser(userdata);
 
       if (newUser) set({ ...newUser });
     } catch (error) {
@@ -61,7 +70,7 @@ export const useUserStore = create<Store>((set, get) => ({
 
   updateUser: async (user: User) => {
     try {
-      const updatedUser = await sqlite.updateUser(user);
+      const updatedUser = await useUserDB.updateUser(user);
       if (updatedUser) set({ ...updatedUser });
     } catch (error) {
       console.error("updateUser: ", error);
@@ -70,7 +79,7 @@ export const useUserStore = create<Store>((set, get) => ({
 
   setUserName: async (id: User["id"], name: string) => {
     try {
-      const res: number | undefined = await sqlite.setUserNameById(id, name);
+      const res: number | undefined = await useUserDB.setUserNameById(id, name);
 
       if (Number(res) > 0) set({ name });
     } catch (error) {
@@ -80,12 +89,16 @@ export const useUserStore = create<Store>((set, get) => ({
 
   setCurrency: async (id: User["id"], currency: string) => {
     try {
-      const res: number | undefined = await sqlite.setCurrencyById(
+      const res: number | undefined = await useUserDB.setCurrencyById(
         id,
         currency,
       );
 
-      if (Number(res) > 0) set({ currency });
+      if (Number(res) > 0) {
+        const currencySymbol =
+          CURRENCIES.find((i) => i.code === currency)?.symbol || "₹";
+        set({ currency, currencySymbol });
+      }
     } catch (error) {
       console.error("setCurrency: ", error);
     }

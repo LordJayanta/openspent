@@ -1,7 +1,7 @@
 import { COLORS } from '@/src/shared/constant/colors';
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { useUserStore } from '../../onboarding/store/useUserStore';
+import { useUserStore } from '../../user/store/useUserStore';
 
 export default function Profile() {
     const { name } = useUserStore();

@@ -1,10 +1,10 @@
 import { commonStyles } from '@/assets/styles/common.style';
 import { useLocalAuthStore } from '@/src/features/biometric-auth/store/useLocalAuthStore';
-import { useUserStore } from '@/src/features/onboarding/store/useUserStore';
 import { COLORS } from '@/src/shared/constant/colors';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useUserStore } from '../../user/store/useUserStore';
 
 export default function LockScreen() {
     const { toggleUnlock } = useLocalAuthStore();

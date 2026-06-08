@@ -4,7 +4,7 @@ import React from 'react'
 import { StyleSheet, View } from 'react-native'
 
 export default function Select({ value, onChange, options }: {
-    value: string,
+    value?: string,
     onChange: (text: string) => void,
     options: { code: string; symbol: string; name: string }[]
 }) {

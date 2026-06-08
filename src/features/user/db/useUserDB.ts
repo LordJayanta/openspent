@@ -71,7 +71,7 @@ const getUser = async () => {
       // create Defult Guset User
       const guestUser = await creatUser({
         name: "Guest",
-        currency: "USD",
+        currency: "INR",
         hasFinishedOnboarding: false,
       });
 
@@ -120,7 +120,7 @@ const setCurrencyById = async (id: User["id"], currency: string) => {
   }
 };
 
-export const sqlite = {
+export const useUserDB = {
   creatUser,
   updateUser,
   getUser,

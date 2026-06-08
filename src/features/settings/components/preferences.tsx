@@ -2,8 +2,8 @@ import { COLORS } from '@/src/shared/constant/colors';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { CURRENCIES } from '../../onboarding/constant/CURRENCIES';
-import { useUserStore } from '../../onboarding/store/useUserStore';
+import { CURRENCIES } from '../../../shared/constant/CURRENCIES';
+import { useUserStore } from '../../user/store/useUserStore';
 import Container from './container';
 
 type PreferencesType = {
