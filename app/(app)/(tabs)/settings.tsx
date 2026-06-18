@@ -1,6 +1,5 @@
-
-import DataSection from '@/src/features/settings/components/data-section'
 import AboutSection from '@/src/pages/settings/components/about-section'
+import DataSection from '@/src/pages/settings/components/data-section'
 import PreferencesSection from '@/src/pages/settings/components/preferences-section'
 import Profile from '@/src/pages/settings/components/profile'
 import SecuritySection from '@/src/pages/settings/components/security-section'

@@ -23,7 +23,9 @@ export default function Button({ text, onPress, iconName, variant = 'natural' }:
 
 const styles = StyleSheet.create({
     button: {
-        width: '100%',
+        flex: 1,
+        minWidth: 0,
+        paddingHorizontal: 'auto',
         paddingVertical: 16,
         borderRadius: 16,
         display: 'flex',
