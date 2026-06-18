@@ -1,38 +1,55 @@
-import { commonStyles } from '@/assets/styles/common.style'
-import { settingsStyles } from '@/assets/styles/settings.style'
-import About from '@/src/features/settings/components/about'
+
 import DataSection from '@/src/features/settings/components/data-section'
-import Preferences from '@/src/features/settings/components/preferences'
-import Profile from '@/src/features/settings/components/profile'
-import Security from '@/src/features/settings/components/security'
-import Tab from '@/src/shared/components/tab'
+import AboutSection from '@/src/pages/settings/components/about-section'
+import PreferencesSection from '@/src/pages/settings/components/preferences-section'
+import Profile from '@/src/pages/settings/components/profile'
+import SecuritySection from '@/src/pages/settings/components/security-section'
+import AppBar from '@/src/shared/components/ui/app-bar'
+import Section from '@/src/shared/components/ui/section'
+import { useGlobalStyle } from '@/src/shared/styles/globalStyle'
 import React from 'react'
 import { ScrollView, View } from 'react-native'
 
 export default function Settings() {
-  return (
-    <View style={[commonStyles.baseScreen, { position: 'relative' }]}>
-      {/* Tab */}
-      <View style={{ position: 'sticky', top: 0 }}>
-        <Tab title='Settings' avater />
-      </View>
+  // Styles
+  const globalStyles = useGlobalStyle();
 
+  return (
+    <View style={[globalStyles.baseScreen]}>
+      <AppBar title='Settings' />
 
       {/* Main */}
       <ScrollView style={{ flex: 1 }}>
-        <View style={settingsStyles.container}>
-          <Profile />
-
-          <Preferences />
-
-          <Security />
-
+        <Section>
+          <View style={{ paddingBottom: 32 }}>
+            <Profile />
+          </View>
+        </Section>
+        <Section style={{ flex: 1, gap: 22, paddingBottom: 32 }}>
+          {/* <Experiment /> */}
+          <PreferencesSection />
+          <SecuritySection />
           <DataSection />
+          <AboutSection />
+        </Section>
 
-          <About />
-        </View>
+
+        {/* Main */}
+        {/* <ScrollView style={{ flex: 1 }}>
+          <View style={settingsStyles.container}>
+            <Profile2 />
+
+            <Preferences />
+
+            <Security />
+
+            <DataSection />
+
+            <About />
+          </View>
+        </ScrollView> */}
+
       </ScrollView>
-
     </View>
   )
 }
