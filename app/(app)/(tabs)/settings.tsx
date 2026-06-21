@@ -1,8 +1,8 @@
-import AboutSection from '@/src/pages/settings/components/about-section'
-import DataSection from '@/src/pages/settings/components/data-section'
-import PreferencesSection from '@/src/pages/settings/components/preferences-section'
-import Profile from '@/src/pages/settings/components/profile'
-import SecuritySection from '@/src/pages/settings/components/security-section'
+import Profile from '@/src/features/settings/components/profile'
+import AboutSection from '@/src/features/settings/components/sections/about-section'
+import DataSection from '@/src/features/settings/components/sections/data-section'
+import PreferencesSection from '@/src/features/settings/components/sections/preferences-section'
+import SecuritySection from '@/src/features/settings/components/sections/security-section'
 import AppBar from '@/src/shared/components/ui/app-bar'
 import Section from '@/src/shared/components/ui/section'
 import { useGlobalStyle } from '@/src/shared/styles/globalStyle'
@@ -31,23 +31,6 @@ export default function Settings() {
           <DataSection />
           <AboutSection />
         </Section>
-
-
-        {/* Main */}
-        {/* <ScrollView style={{ flex: 1 }}>
-          <View style={settingsStyles.container}>
-            <Profile2 />
-
-            <Preferences />
-
-            <Security />
-
-            <DataSection />
-
-            <About />
-          </View>
-        </ScrollView> */}
-
       </ScrollView>
     </View>
   )

@@ -1,10 +1,10 @@
 import { useUserStore } from '@/src/features/user/store/useUserStore';
+import { CURRENCIES } from '@/src/shared/constant/CURRENCIES';
 import { IoniconsName } from '@/src/shared/type/type';
 import React from 'react';
 import { Alert } from 'react-native';
-import { CURRENCIES } from '../../../shared/constant/CURRENCIES';
-import SettingContainer from './setting-container';
-import { SettingItem } from './setting-item';
+import SettingContainer from '../ui/setting-container';
+import { SettingItem } from '../ui/setting-item';
 
 
 

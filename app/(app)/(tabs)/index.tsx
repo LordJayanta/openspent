@@ -1,6 +1,7 @@
+import RecentTransactions from "@/src/features/dashboard/components/sections/recent-transactions";
+import ReportCard from "@/src/features/dashboard/components/sections/report-card";
 import { useTransactionStore } from "@/src/features/transactions/store/useTransactionStore";
-import RecentTransactions from "@/src/pages/index/components/recent-transactions";
-import ReportCard from "@/src/pages/index/components/report-card";
+
 import AppBar from "@/src/shared/components/ui/app-bar";
 import Section from "@/src/shared/components/ui/section";
 import { useGlobalStyle } from "@/src/shared/styles/globalStyle";
