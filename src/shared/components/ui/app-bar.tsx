@@ -23,6 +23,7 @@ export default function AppBar({
     leftAction,
     rightAction,
     centerAction
+    
 }: Props) {
     const { COLORS } = useThemeStore();
     const styles = useStyle();
@@ -84,7 +85,8 @@ const useStyle = () => {
         title: {
             fontFamily: 'Inter',
             fontSize: TYPOGRAPHY.heading.h4,
-            color: COLORS.text.primary
+            color: COLORS.text.primary,
+            textTransform: 'uppercase',
         },
     })
 }

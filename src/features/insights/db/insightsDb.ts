@@ -1,19 +1,7 @@
 import { gt, sql, sum } from "drizzle-orm";
-import { useMemo } from "react";
 import { db, initDb } from "../../../shared/db/database";
 import { transactions } from "../../../shared/db/schema";
 
-export const useSqlite = () => {
-  return useMemo(
-    () => ({
-      db,
-      getIncomeData,
-    }),
-    [],
-  );
-};
-
-// Get Income
 export const getIncomeData = async () => {
   try {
     await initDb();
@@ -34,7 +22,7 @@ export const getIncomeData = async () => {
   }
 };
 
-export const sqlite = {
+export const insightsDb = {
   db,
   getIncomeData,
 };

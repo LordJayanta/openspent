@@ -10,16 +10,16 @@ type Props = {
     linkText?: string;
     redirectPath?: Href;
 }
-export default function SectionHeader({ title, linkText='See All', redirectPath = '/' }: Props) {
+export default function SectionHeader({ title, linkText, redirectPath = '/' }: Props) {
     const styles = useStyle();
     const { COLORS, TYPOGRAPHY } = useThemeStore();
 
     return (
         <View style={styles.transactionsReportContainer}>
             <Text style={{ color: COLORS.text.primary, fontSize: TYPOGRAPHY.body.md }}>{title}</Text>
-            <TouchableOpacity onPress={() => router.push(redirectPath)}>
+            {linkText && <TouchableOpacity onPress={() => router.push(redirectPath)}>
                 <Text style={{ color: COLORS.text.accent, fontSize: TYPOGRAPHY.body.md }}>{linkText}</Text>
-            </TouchableOpacity>
+            </TouchableOpacity>}
         </View>
     )
 }
