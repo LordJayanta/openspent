@@ -1,7 +1,7 @@
 import { IoniconsName } from '@/src/shared/type/type'
 import { Ionicons } from '@expo/vector-icons'
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { useThemeStore } from '../../theme/store/useThemeStore'
 
 
@@ -34,18 +34,18 @@ export default function AppBar({
         ]}>
 
             {leftAction?.Icon &&
-                <View style={styles.iconContainer}>
+                <TouchableOpacity onPress={leftAction.onPress} style={styles.iconContainer}>
                     <Ionicons name={leftAction.Icon} size={leftAction.size || 30} color={COLORS.text.primary} />
-                </View>
+                </TouchableOpacity>
             }
 
 
 
             {centerAction ?
                 (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-                    <View style={styles.iconContainer}>
+                    <TouchableOpacity onPress={centerAction.onPress}  style={styles.iconContainer}>
                         <Ionicons name={centerAction.Icon} size={centerAction.size || 30} color={COLORS.text.primary} />
-                    </View>
+                    </TouchableOpacity>
                     <Text style={styles.title}>{title}</Text>
                 </View>
                 )
@@ -55,9 +55,9 @@ export default function AppBar({
 
 
             {rightAction?.Icon &&
-                <View style={styles.iconContainer}>
+                <TouchableOpacity onPress={rightAction.onPress} style={styles.iconContainer}>
                     <Ionicons name={rightAction.Icon} size={rightAction.size || 30} color={COLORS.text.primary} />
-                </View>
+                </TouchableOpacity>
             }
         </View>
     )
