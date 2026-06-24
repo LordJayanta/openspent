@@ -9,7 +9,7 @@ import { router } from "expo-router";
 
 export default function AddButton() {
     return (
-        <TouchableOpacity onPress={() => router.push("/create")}>
+        <TouchableOpacity onPress={() => router.push("/(app)/transaction/create")}>
             <LinearGradient
                 style={styles.container}
                 colors={['#0BAE5D', '#3CD67B']}

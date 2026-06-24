@@ -1,25 +1,30 @@
-import { COLORS } from "@/src/shared/constant/colors";
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
 
 import { type IconName } from '@/src/features/transactions/constant/Category';
+import { useThemeStore } from "@/src/shared/theme/store/useThemeStore";
 
-export default function CategoryItem({ active = false, name, icon }: { active?: boolean, name: string , icon: IconName}) {
+export default function CategoryItem({ active = false, name, icon }: { active?: boolean, name: string, icon: IconName }) {
+    const styles = useStyles();
+    const { COLORS } = useThemeStore();
+
     return (
         <View style={styles.container}>
             <View style={[
-                styles.iconContainer,
-                { backgroundColor: active ? COLORS.primary : COLORS.gray },
-                active &&  {boxShadow: '0px 8px 20px rgba(184, 255, 234, 0.3)', }
+                styles.icon,
+                active ? styles.activeIcon : styles.defaultIcon
             ]}>
-                <Ionicons name={icon} color={COLORS.light} size={16} />
+                <Ionicons 
+                name={icon} 
+                color={active ? COLORS.text.accent : COLORS.text.primary} 
+                size={16} />
             </View>
             <Text
                 style={[
                     styles.text,
-                    { color: active ? COLORS.primary : COLORS.text }
+                    { color: active ? COLORS.text.accent : COLORS.text.secondary }
                 ]}
             >{name}</Text>
         </View>
@@ -28,27 +33,37 @@ export default function CategoryItem({ active = false, name, icon }: { active?: 
 
 
 
-export const styles = StyleSheet.create({
-    container: {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: 12,
-    },
-    text: {
-        fontSize: 12,
-        fontFamily: "Inter",
-        lineHeight: 16,
-        fontWeight: 500, // "medium"
-        textTransform: "capitalize",
-    },
-    iconContainer: {
-        width: 64,
-        height: 64,
-        padding: 12,
-        borderRadius: 1000,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-    }
-})
+const useStyles = () => {
+    const { COLORS, TYPOGRAPHY } = useThemeStore();
+
+    return StyleSheet.create({
+        container: {
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 8,
+        },
+        text: {
+            fontSize: TYPOGRAPHY.body.sm,
+            textTransform: "capitalize",
+        },
+        icon: {
+            width: 56,
+            height: 56,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            borderWidth: 1,
+        },
+        defaultIcon: {
+            borderRadius: 1000,
+            borderColor: COLORS.border.subtle,
+            backgroundColor: COLORS.surface.lv1,
+        },
+        activeIcon: {
+            borderRadius: 16,
+            borderColor: COLORS.border.accent,
+            backgroundColor: 'rgba(59, 111, 58, 0.3)',
+        }
+    })
+}

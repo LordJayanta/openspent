@@ -52,7 +52,7 @@ export default function TabLayout() {
                     tabPress: (e) => {
                         // NOTE: May be not working properly, but handal it on AddButton()
                         e.preventDefault();
-                        router.push("/(app)/create");
+                        router.push("/(app)/transaction/create");
                     }
                 }}
 

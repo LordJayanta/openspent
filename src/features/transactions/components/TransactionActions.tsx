@@ -40,7 +40,7 @@ export default function TransactionActions({ data, onClose, isOpen }: Props) {
                             onPress={async () => {
                                 onClose()
                                 router.push({
-                                    pathname: '/create',
+                                    pathname: '/(app)/transaction/create',
                                     params: {
                                         id: JSON.stringify(data?.id)
                                     },
