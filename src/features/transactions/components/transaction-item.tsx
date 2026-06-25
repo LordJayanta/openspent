@@ -1,7 +1,8 @@
 import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
 import { Ionicons, } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Transaction } from '../../../shared/db/schema';
 import { formatDisplayDate, formatDisplayTime } from '../../../shared/utils/formatTime';
 import { CATEGORIES_ICONS, CategoryKey } from '../constant/Category';
@@ -24,10 +25,16 @@ export default function TransactionItem({ transaction, sparator }: Props) {
 
 
   return (
-    <View style={[
-      styles.containter,
-      sparator && { borderBottomWidth: 1, borderColor: COLORS.border.subtle }
-    ]}>
+    <TouchableOpacity
+      onPress={() => router.push({
+        pathname: `/(app)/transaction/[id]`,
+        params: { id: String(transaction.id) }
+      })}
+      activeOpacity={0.8}
+      style={[
+        styles.containter,
+        sparator && { borderBottomWidth: 1, borderColor: COLORS.border.subtle }
+      ]}>
 
       <View style={styles.subContainter}>
         {/* Icon */}
@@ -57,7 +64,7 @@ export default function TransactionItem({ transaction, sparator }: Props) {
           isIncome ? { color: '#4AE183' } : { color: '#FFB4A9' }
         ]}
       >{isIncome ? '+' : '-'} ${Math.abs(transaction.amount)}</Text>
-    </View>
+    </TouchableOpacity>
   )
 }
 
