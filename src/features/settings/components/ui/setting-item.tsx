@@ -82,7 +82,7 @@ const useStyles = () => {
       color: COLORS.text.primary,
     },
     description: {
-      fontSize: TYPOGRAPHY.body.tiny,
+      fontSize: TYPOGRAPHY.body.caption,
       fontFamily: 'Inter',
       color: COLORS.text.tertiary,
     },
@@ -93,7 +93,7 @@ const useStyles = () => {
       gap: 4,
     },
     actionText: {
-      fontSize: TYPOGRAPHY.body.tiny,
+      fontSize: TYPOGRAPHY.body.caption,
       fontFamily: 'Inter',
       color: COLORS.text.tertiary,
     }

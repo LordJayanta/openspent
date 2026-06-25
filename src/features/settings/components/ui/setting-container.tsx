@@ -1,5 +1,5 @@
 import Container from '@/src/shared/components/ui/container'
-import { COLORS } from '@/src/shared/constant/colors'
+import { useThemeStore } from '@/src/shared/theme/store/useThemeStore'
 import { IoniconsName } from '@/src/shared/type/type'
 import { Ionicons } from '@expo/vector-icons'
 import React from 'react'
@@ -18,11 +18,12 @@ export default function SettingContainer({
   transparent
 }: Props) {
   const styles = useStyles();
+   const { COLORS } = useThemeStore();
 
   return (
     <View style={styles.section}>
       <View style={styles.headerContainer}>
-        <Ionicons name={iconName} size={16} color={COLORS.primary} />
+        <Ionicons name={iconName} size={16} color={COLORS.text.accent} />
         <Text style={styles.title}>{title}</Text>
       </View>
 
@@ -34,6 +35,8 @@ export default function SettingContainer({
 }
 
 const useStyles = () => {
+  const { COLORS } = useThemeStore();
+
   return StyleSheet.create({
   section: {
     display: 'flex',
@@ -50,7 +53,7 @@ const useStyles = () => {
     fontSize: 12,
     lineHeight: 16,
     fontWeight: 'bold',
-    color: COLORS.light,
+    color: COLORS.text.primary,
     textTransform: 'uppercase'
   },
   container: {

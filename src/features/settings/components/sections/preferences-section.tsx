@@ -1,8 +1,10 @@
 import { useUserStore } from '@/src/features/user/store/useUserStore';
+import OSSelect from '@/src/shared/components/ui/os-select';
 import { CURRENCIES } from '@/src/shared/constant/CURRENCIES';
+import { themeMap } from '@/src/shared/theme/constants';
+import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
 import { IoniconsName } from '@/src/shared/type/type';
 import React from 'react';
-import { Alert } from 'react-native';
 import SettingContainer from '../ui/setting-container';
 import { SettingItem } from '../ui/setting-item';
 
@@ -19,7 +21,12 @@ type SettingsListType = {
 }
 
 export default function PreferencesSection() {
+    const [isOpenThemeModal, setIsOpenThemeModal] = React.useState(false);
+
     const { currency } = useUserStore();
+
+    const { setTheme, theme } = useThemeStore();
+
     const preferenceItems: SettingsListType[] = [
         {
             title: 'Primary Currency',
@@ -28,20 +35,30 @@ export default function PreferencesSection() {
         },
         {
             title: 'App Theme',
-            options: ['Dark'],
+            options: [theme],
             iconName: 'color-palette-outline',
+            onPress: () => setIsOpenThemeModal(true),
         },
     ]
 
+
     return (
         <SettingContainer iconName='options-outline' title='Preferences'>
+            <OSSelect
+                isOpen={isOpenThemeModal}
+                onClose={() => setIsOpenThemeModal(false)}
+                items={themeMap}
+                value={ theme }
+                onChange={setTheme}
+            />
+
             {preferenceItems.map((item, index) => (
                 <SettingItem
                     key={item.title + index}
                     iconName={item.iconName}
                     title={item.title}
                     sparator={index !== preferenceItems.length - 1}
-                    onPress={item.onPress || (() => Alert.alert('Option Comming Soon...!'))}
+                    onPress={item?.onPress}
                     actionText={item.options[0]}
                 >
                     {item.children}

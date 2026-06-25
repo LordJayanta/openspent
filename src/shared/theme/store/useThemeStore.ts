@@ -1,4 +1,6 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 import themes from "../../theme/constants";
 
 type ThemeName = keyof typeof themes;
@@ -14,18 +16,26 @@ interface ThemeState {
 
 const defaultTheme = Object.keys(themes)[0] as ThemeName;
 
-export const useThemeStore = create<ThemeState>((set) => ({
-  theme: defaultTheme,
-  COLORS: themes[defaultTheme].COLORS,
-  TYPOGRAPHY: themes[defaultTheme].TYPOGRAPHY,
-  allThemes: Object.keys(themes) as ThemeName[],
+export const useThemeStore = create<ThemeState>()(
+  persist(
+    (set) => ({
+      theme: defaultTheme,
+      COLORS: themes[defaultTheme].COLORS,
+      TYPOGRAPHY: themes[defaultTheme].TYPOGRAPHY,
+      allThemes: Object.keys(themes) as ThemeName[],
 
-  setTheme: (theme: ThemeName) => {
-    if (!themes[theme]) return;
-    set({
-      theme: theme,
-      COLORS: themes[theme].COLORS,
-      TYPOGRAPHY: themes[theme].TYPOGRAPHY,
-    });
-  },
-}));
+      setTheme: (theme: ThemeName) => {
+        if (!themes[theme]) return;
+        set({
+          theme: theme,
+          COLORS: themes[theme].COLORS,
+          TYPOGRAPHY: themes[theme].TYPOGRAPHY,
+        });
+      },
+    }),
+    {
+      name: "openspent-theme-storage", // Unique key for AsyncStorage
+      storage: createJSONStorage(() => AsyncStorage),
+    },
+  ),
+);

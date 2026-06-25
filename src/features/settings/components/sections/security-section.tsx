@@ -2,7 +2,6 @@ import { useSettingStore } from '@/src/features/settings/store/useSettingStore';
 import OSSwitch from '@/src/shared/components/ui/os-switch';
 import { IoniconsName } from '@/src/shared/type/type';
 import React from 'react';
-import { Alert } from 'react-native';
 import SettingContainer from '../ui/setting-container';
 import { SettingItem } from '../ui/setting-item';
 
@@ -43,7 +42,7 @@ export default function SecuritySection() {
                     iconName={item.iconName}
                     title={item.title}
                     sparator={index !== SettingsListItem.length - 1}
-                    onPress={item.onPress || (() => Alert.alert('Option Comming Soon...!'))}
+                    onPress={item?.onPress}
                     actionText={item.options[0]}
                 >
                     {item.children}
