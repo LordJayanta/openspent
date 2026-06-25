@@ -10,7 +10,7 @@ import { formatDisplayDate, formatDisplayTime } from '@/src/shared/utils/formatT
 import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
 import React, { useEffect } from 'react';
-import { Alert, StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 
 export default function TransactionDetailScreen() {
@@ -96,6 +96,14 @@ export default function TransactionDetailScreen() {
                     </Container>
                 )}
             </Section>
+            <View style={styles.createButtonContainer}>
+                <TouchableOpacity style={globalStyles.primaryButton} onPress={() => router.push({
+                    pathname: `/(app)/transaction/create`,
+                    params: { id: String(transaction?.id) }
+                })}>
+                    <Text style={[globalStyles.primaryButtonText, { textTransform: "uppercase", color: COLORS.text.primary }]}>Edit and Modify</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     )
 }
@@ -155,6 +163,12 @@ const useStyles = () => {
         noteText: {
             color: COLORS.text.tertiary,
             fontSize: TYPOGRAPHY.body.md,
+        },
+        createButtonContainer: {
+            paddingHorizontal: 24,
+            paddingVertical: 16,
+            borderTopWidth: 1,
+            borderTopColor: COLORS.border.subtle,
         },
     })
 }
