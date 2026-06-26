@@ -8,13 +8,14 @@ import { Ionicons } from '@expo/vector-icons'
 import { FlashList } from '@shopify/flash-list'
 import React, { useEffect } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import { useUserStore } from '../../user/store/useUserStore'
 
 
 type DataType = {
-    title: string;
-    amount: number;
-    percentage: number;
-    color?: string
+  title: string;
+  amount: number;
+  percentage: number;
+  color?: string
 }
 
 export default function CategoryOverview() {
@@ -23,9 +24,7 @@ export default function CategoryOverview() {
   const styles = useStyle();
 
   const [data, setData] = React.useState<DataType[]>([]);
-
-  
-
+  const { currencySymbol } = useUserStore();
 
   const generateChartData = () => {
     // Filter Expenses
@@ -34,7 +33,7 @@ export default function CategoryOverview() {
     // Group and sum by category
     const grouped = expense.reduce((acc: Record<string, DataType>, trnx) => {
       const amount = Math.abs(trnx.amount);
-      const color = CATEGORIES.filter(t => t.name === trnx.category)[0].color
+      const color = CATEGORIES.filter(t => t.name === trnx.category)[0].color;
 
       // if Category is present update value
       if (acc[trnx.category]) {
@@ -84,7 +83,7 @@ export default function CategoryOverview() {
               <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Text style={styles.itemTitle}>{item.title}</Text>
                 <View style={{ flexDirection: 'row', gap: 12 }}>
-                  <Text style={styles.itemAmount}>${item.amount}</Text>
+                  <Text style={styles.itemAmount}>{currencySymbol}{item.amount}</Text>
                   <Text style={styles.itemPercentage}>{item.percentage}%</Text>
                 </View>
               </View>

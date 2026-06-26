@@ -4,6 +4,7 @@ import LinnerShodow from '@/src/features/transactions/components/linner-shodow'
 import { CATEGORIES, CategoryKey } from '@/src/features/transactions/constant/Category'
 import { useTransactionStore } from '@/src/features/transactions/store/useTransactionStore'
 import { useStyle } from '@/src/features/transactions/styles/add-transaction-page.style'
+import { useUserStore } from '@/src/features/user/store/useUserStore'
 import AppBar from '@/src/shared/components/ui/app-bar'
 import Container from '@/src/shared/components/ui/container'
 import Section from '@/src/shared/components/ui/section'
@@ -23,6 +24,8 @@ export default function Create() {
 
   const { COLORS } = useThemeStore();
   const styles = useStyle();
+
+  const { currencySymbol } = useUserStore();
 
 
   const [amount, setAmount] = useState<string>('');
@@ -118,7 +121,7 @@ export default function Create() {
             {/* Amount */}
             <View>
               <View style={styles.amountContainer}>
-                <Text style={styles.amountSymbol}>$</Text>
+                <Text style={styles.amountSymbol}>{currencySymbol}</Text>
                 <TextInput
                   placeholder='0.00'
                   style={[styles.amountInput]}

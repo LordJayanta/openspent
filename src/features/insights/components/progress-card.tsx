@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { PieChart, pieDataItem } from 'react-native-gifted-charts';
+import { useUserStore } from '../../user/store/useUserStore';
 
 type Props = {
     balance: number;
@@ -16,9 +17,11 @@ export default function ProgressCard({ balance, percentageChange }: Props) {
     const { summary } = useTransactionStore()
     const styles = useStyles();
 
+    const { currencySymbol } = useUserStore();
+
     const pieChartData: pieDataItem[] = [
         { value: summary.balance, color: COLORS.text.accent },
-        { value: summary.income, color: COLORS.text.secondary},
+        { value: summary.income, color: COLORS.text.secondary },
         { value: summary.expense, color: COLORS.text.disabled },
     ]
 
@@ -39,7 +42,7 @@ export default function ProgressCard({ balance, percentageChange }: Props) {
                             fontSize: 29,
                             color: COLORS.text.primary,
                         }}
-                    >${Math.abs(balance)}</Text>
+                    >{currencySymbol}{Math.abs(balance)}</Text>
 
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <Ionicons name={percentageChange > 0 ? 'arrow-up' : 'arrow-down'} size={20} color={percentageChange > 0 ? COLORS.semantic.success.base : COLORS.semantic.warning.base} />

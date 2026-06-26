@@ -4,6 +4,7 @@ import { IoniconsName } from '@/src/shared/type/type';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { useUserStore } from '../../user/store/useUserStore';
 
 export type SummaryCardType = {
     iconName: IoniconsName;
@@ -18,6 +19,8 @@ export default function SummaryCard({ amount, iconName, percentageChange, tenure
     const { COLORS } = useThemeStore();
     const styles = useStyle();
 
+    const { currencySymbol } = useUserStore();
+
     const baseColor = inverse ? COLORS.semantic.warning.base : COLORS.semantic.success.base;
     const alterColor = inverse ? COLORS.semantic.success.base : COLORS.semantic.warning.base;
 
@@ -30,7 +33,7 @@ export default function SummaryCard({ amount, iconName, percentageChange, tenure
                 <Text style={styles.title}>{title}</Text>
                 <View style={{ gap: 6 }}>
                     <View>
-                        <Text style={styles.amount}>${amount}</Text>
+                        <Text style={styles.amount}>{ currencySymbol }{amount}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <Ionicons

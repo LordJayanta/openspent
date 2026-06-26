@@ -5,6 +5,7 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Transaction } from '../../../shared/db/schema';
 import { formatDisplayDate, formatDisplayTime } from '../../../shared/utils/formatTime';
+import { useUserStore } from '../../user/store/useUserStore';
 import { CATEGORIES_ICONS, CategoryKey } from '../constant/Category';
 
 type Props = {
@@ -15,6 +16,8 @@ type Props = {
 export default function TransactionItem({ transaction, sparator }: Props) {
   const styles = useStyle();
   const { COLORS } = useThemeStore();
+
+  const { currencySymbol } = useUserStore();
 
   const isIncome = transaction.amount > 0;
   const iconName = CATEGORIES_ICONS[transaction.category as CategoryKey]
@@ -63,7 +66,7 @@ export default function TransactionItem({ transaction, sparator }: Props) {
           styles.amount,
           isIncome ? { color: '#4AE183' } : { color: '#FFB4A9' }
         ]}
-      >{isIncome ? '+' : '-'} ${Math.abs(transaction.amount)}</Text>
+      >{isIncome ? '+' : '-'} {currencySymbol}{Math.abs(transaction.amount)}</Text>
     </TouchableOpacity>
   )
 }

@@ -1,3 +1,4 @@
+import { useUserStore } from '@/src/features/user/store/useUserStore';
 import { SummaryType } from '@/src/shared/common.types';
 import Container from '@/src/shared/components/ui/container';
 import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
@@ -17,6 +18,7 @@ export default function ReportCard({ summary }: Props) {
     const styles = useStyles();
     const { COLORS, TYPOGRAPHY } = useThemeStore();
 
+    const { currencySymbol } = useUserStore();
 
     const pieChartData: pieDataItem[] = [
         { value: summary.balance, color: COLORS.primary[400] },
@@ -80,7 +82,7 @@ export default function ReportCard({ summary }: Props) {
                                     fontSize: 29,
                                     color: COLORS.text.primary,
                                 }}
-                            >${Math.abs(summary.expense)}</Text>
+                            >{currencySymbol}{Math.abs(summary.expense)}</Text>
 
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <Ionicons name="arrow-up" size={23} color={COLORS.text.accent} />
@@ -121,11 +123,11 @@ export default function ReportCard({ summary }: Props) {
                 <View style={styles.StatsContainer}>
                     <View style={styles.StatsDataContainer}>
                         <Text style={styles.StatsText}>income</Text>
-                        <Text style={[styles.StatsAmount, { color: COLORS.text.accent }]}>+${Math.abs(summary.income)}</Text>
+                        <Text style={[styles.StatsAmount, { color: COLORS.text.accent }]}>+{currencySymbol}{Math.abs(summary.income)}</Text>
                     </View>
                     <View style={styles.StatsDataContainer}>
                         <Text style={styles.StatsText}>balance</Text>
-                        <Text style={[styles.StatsAmount, { color: COLORS.text.primary }]}>+${Math.abs(summary.balance)}</Text>
+                        <Text style={[styles.StatsAmount, { color: COLORS.text.primary }]}>+{currencySymbol}{Math.abs(summary.balance)}</Text>
                     </View>
                 </View>
             </View>

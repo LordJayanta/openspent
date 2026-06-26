@@ -7,6 +7,7 @@ import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { BarChart, barDataItem } from 'react-native-gifted-charts';
+import { useUserStore } from '../../user/store/useUserStore';
 
 
 export const BarChartSection = () => {
@@ -14,6 +15,7 @@ export const BarChartSection = () => {
     const { COLORS } = useThemeStore();
     const { summary } = useTransactionStore();
     const [barData, setBarData] = useState<barDataItem[]>([]);
+    const { currencySymbol } = useUserStore();
 
     const loadMonthlyData = async () => {
         const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
@@ -31,7 +33,7 @@ export const BarChartSection = () => {
 
         <View>
             <View style={styles.ChartHeaderContainer}>
-                <SectionHeader title='Cash Flow' linkText={`Total : ${summary.income}`} />
+                <SectionHeader title='Cash Flow' linkText={`Total : ${ currencySymbol } ${summary.income}`} />
             </View>
             <Container style={{ paddingVertical: 16 }}>
                 <BarChart

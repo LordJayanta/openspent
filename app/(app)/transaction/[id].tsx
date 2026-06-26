@@ -1,6 +1,7 @@
 import DetailItem from '@/src/features/transactions/components/details/details-items';
 import { useTransactionStore } from '@/src/features/transactions/store/useTransactionStore';
 import { TransactionType } from '@/src/features/transactions/types/types';
+import { useUserStore } from '@/src/features/user/store/useUserStore';
 import AppBar from '@/src/shared/components/ui/app-bar';
 import Container from '@/src/shared/components/ui/container';
 import Section from '@/src/shared/components/ui/section';
@@ -15,6 +16,8 @@ import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function TransactionDetailScreen() {
     const { id } = useLocalSearchParams();
+
+    const { currencySymbol } = useUserStore();
 
     const transaction = useTransactionStore((state) => state.transactions.find((t) => t.id === Number(id)));
 
@@ -74,7 +77,7 @@ export default function TransactionDetailScreen() {
                         <Ionicons name='cash-outline' size={48} color={COLORS.text.primary} />
                     </View>
                     <Text style={styles.title}>{transaction?.title}</Text>
-                    <Text style={styles.amount}>-${transaction?.amount}</Text>
+                    <Text style={styles.amount}>-{currencySymbol}{transaction?.amount}</Text>
                     <View style={styles.badge}>
                         <Text style={styles.badgeText}>{transaction?.category}</Text>
                     </View>
