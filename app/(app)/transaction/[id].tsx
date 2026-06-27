@@ -77,7 +77,11 @@ export default function TransactionDetailScreen() {
                         <Ionicons name='cash-outline' size={48} color={COLORS.text.primary} />
                     </View>
                     <Text style={styles.title}>{transaction?.title}</Text>
-                    <Text style={styles.amount}>-{currencySymbol}{transaction?.amount}</Text>
+                    <Text style={styles.amount}>
+                        {transaction?.amount as number < 0 ? "-" : ""}
+                        {currencySymbol}
+                        {Math.abs(transaction?.amount as number).toFixed(2)}
+                        </Text>
                     <View style={styles.badge}>
                         <Text style={styles.badgeText}>{transaction?.category}</Text>
                     </View>
