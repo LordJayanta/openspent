@@ -124,9 +124,9 @@ export const useTransactionStore = create<Store>((set, get) => ({
     try {
       await sqlite.addBulkTransctions(transactions);
 
-      set((state) => ({
-        transactions: [...transactions, ...state.transactions],
-      }));
+      // Reload from DB to guarantee numeric ids and typed fields
+      const fresh = await sqlite.getAllTransactions();
+      set({ transactions: fresh });
 
       get().calculateSummary();
     } catch (error) {
