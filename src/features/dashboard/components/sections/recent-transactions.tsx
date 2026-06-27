@@ -1,5 +1,6 @@
 import TransactionItem from '@/src/features/transactions/components/transaction-item';
 import { useTransactionStore } from '@/src/features/transactions/store/useTransactionStore';
+import NoTransactionsFound from '@/src/shared/components/no-data-found';
 import Container from '@/src/shared/components/ui/container';
 import SectionHeader from '@/src/shared/components/ui/section-header';
 import React from 'react';
@@ -17,15 +18,26 @@ export default function RecentTransactions({ limit = 3 }: Props) {
                 title='Recent Transactions'
                 redirectPath={'/transactions'}
             />
-            <Container style={{ paddingHorizontal: 12, gap: 4 }}>
-                {transactions.slice(0, limit).map((tx, index) => (
-                    <TransactionItem
-                        key={tx.id}
-                        transaction={tx}
-                        sparator={index !== transactions.length - 1}
+
+            {(transactions.length === 0)
+                ? (
+                    <NoTransactionsFound
+                        grow={70}
+                        title='No Transaction Found'
+                        description='Create your first transaction, by clicking the add button below'
                     />
-                ))}
-            </Container>
+                )
+                : (
+                    <Container style={{ paddingHorizontal: 12, gap: 4 }}>
+                        {transactions.slice(0, limit).map((tx, index) => (
+                            <TransactionItem
+                                key={tx.id}
+                                transaction={tx}
+                                sparator={index !== transactions.length - 1}
+                            />
+                        ))}
+                    </Container>
+                )}
         </View>
     )
 }

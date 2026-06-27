@@ -1,6 +1,8 @@
+
 import TransactionItem from '@/src/features/transactions/components/transaction-item'
 import { useTransactionStore } from '@/src/features/transactions/store/useTransactionStore'
 import { getGroupedMonthlyTransactions, MonthlyGroup } from '@/src/features/transactions/utils/get-grouped-monthly-transactions'
+import NoTransactionsFound from '@/src/shared/components/no-data-found'
 import AppBar from '@/src/shared/components/ui/app-bar'
 import Container from '@/src/shared/components/ui/container'
 import Section from '@/src/shared/components/ui/section'
@@ -28,37 +30,49 @@ export default function Transactions() {
     <View style={{ flex: 1, backgroundColor: COLORS.background.base }}>
       <AppBar title='TRANSACTIONS' />
 
-      <Section style={{ flex: 1, gap: 32 }} >
-        
-        {/* Transaction List */}
-        <FlashList
-          data={groupedMonthlyTransactions}
-          contentContainerStyle={{ gap: 20 }}
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}
-          renderItem={({ item }) => {
-            return (
-              <View style={{ gap: 16, marginBottom: 20 }}>
-                <View style={styles.transactionsReportContainer}>
-                  <Text style={{ color: COLORS.text.secondary, fontSize: TYPOGRAPHY.body.sm }}>{item.month}</Text>
-                  <Text style={{ color: COLORS.text.secondary, fontSize: TYPOGRAPHY.body.sm }}>-${item.totalExpense}</Text>
-                </View>
+      {
+        (transactions.length === 0)
+          ? (
+            <Section style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
+              <NoTransactionsFound
+                grow={70}
+                title='No Transaction Found'
+                description='Create your first transaction, by clicking the add button below'
+              />
+            </Section>
+          )
+          : (
+            <Section style={{ flex: 1, gap: 32 }} >
+              {/* Transaction List */}
+              <FlashList
+                data={groupedMonthlyTransactions}
+                contentContainerStyle={{ gap: 20 }}
+                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
+                renderItem={({ item }) => {
+                  return (
+                    <View style={{ gap: 16, marginBottom: 20 }}>
+                      <View style={styles.transactionsReportContainer}>
+                        <Text style={{ color: COLORS.text.secondary, fontSize: TYPOGRAPHY.body.sm }}>{item.month}</Text>
+                        <Text style={{ color: COLORS.text.secondary, fontSize: TYPOGRAPHY.body.sm }}>-${item.totalExpense}</Text>
+                      </View>
 
-                <Container style={{ paddingHorizontal: 12, gap: 4 }}>
-                  {item.transactions.map((tx, index) => (
-                    <TransactionItem
-                      key={tx.id}
-                      transaction={tx}
-                      sparator={index !== item.transactions.length - 1}
-                    />
-                  ))}
-                </Container>
-              </View>
-            )
-          }}
-        />
-
-      </Section>
+                      <Container style={{ paddingHorizontal: 12, gap: 4 }}>
+                        {item.transactions.map((tx, index) => (
+                          <TransactionItem
+                            key={tx.id}
+                            transaction={tx}
+                            sparator={index !== item.transactions.length - 1}
+                          />
+                        ))}
+                      </Container>
+                    </View>
+                  )
+                }}
+              />
+            </Section>
+          )
+      }
     </View>
   )
 }
