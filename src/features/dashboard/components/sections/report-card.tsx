@@ -21,9 +21,9 @@ export default function ReportCard({ summary }: Props) {
     const { currencySymbol } = useUserStore();
 
     const pieChartData: pieDataItem[] = [
-        { value: summary.balance, color: COLORS.primary[400] },
-        { value: summary.income, color: COLORS.primary[800] },
-        { value: summary.expense, color: COLORS.surface.lv5 },
+        { value: summary.balance, color: COLORS.text.accent },
+        { value: summary.income, color: COLORS.text.secondary },
+        { value: summary.expense, color: COLORS.text.disabled }
     ]
 
     React.useEffect(() => {

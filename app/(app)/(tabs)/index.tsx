@@ -55,7 +55,7 @@ export default function Index() {
               color: COLORS.text.secondary,
               width: 200,
             }}
-          >Track your expensesand save more</Text>
+          >Track your expenses and save more</Text>
         </View>
 
         {/* Report Card */}
