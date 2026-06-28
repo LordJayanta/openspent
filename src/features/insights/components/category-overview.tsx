@@ -1,4 +1,4 @@
-import { CATEGORIES } from '@/src/features/transactions/constant/Category'
+import { CATEGORIES, CATEGORIES_ICONS, CategoryKey } from '@/src/features/transactions/constant/Category'
 import { useTransactionStore } from '@/src/features/transactions/store/useTransactionStore'
 import Container from '@/src/shared/components/ui/container'
 import ProgressBar from '@/src/shared/components/ui/progress-bar'
@@ -76,7 +76,10 @@ export default function CategoryOverview() {
         renderItem={({ item, index }) => (
           <Container key={item.title + index} style={[styles.itemContainer, { marginTop: 12 }]}>
             <View style={styles.itemContainer}>
-              <Ionicons name='infinite' size={30} color={COLORS.text.accent} />
+              <Ionicons
+                name={CATEGORIES_ICONS[item?.title as CategoryKey]}
+                size={24}
+                color={COLORS.text.accent} />
             </View>
 
             <View style={{ gap: 12, flex: 1 }}>
