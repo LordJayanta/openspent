@@ -1,4 +1,5 @@
 import Button from '@/src/shared/components/button';
+import { router } from 'expo-router';
 import * as Sharing from 'expo-sharing';
 import React from 'react';
 import { Alert } from 'react-native';
@@ -24,7 +25,10 @@ export default function ExportButton() {
             if (await Sharing.isAvailableAsync() && fileUri) {
                 await Sharing.shareAsync(fileUri);
             }
+
+            setTimeout(() => router.back(), 1200);
         } catch (error) {
+            Alert.alert("Error", "Failed to export data");
             console.log("ExportData: ", error);
         }
     }

@@ -137,7 +137,10 @@ export const useTransactionStore = create<Store>((set, get) => ({
   deleteAllTransactions: async () => {
     try {
       await sqlite.deleteAllTransactions();
-      set({ transactions: [] });
+      set({
+        transactions: [],
+        summary: { income: 0, expense: 0, balance: 0 },
+      });
     } catch (error) {
       console.error("Failed to delete all transactions: ", error);
     }

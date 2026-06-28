@@ -1,4 +1,5 @@
 import Button from '@/src/shared/components/button';
+import { router } from 'expo-router';
 import React from 'react';
 import { Alert } from 'react-native';
 import { useTransactionStore } from '../store/useTransactionStore';
@@ -22,7 +23,15 @@ export default function DeleteAllTransactions() {
                     "Are you sure you want to delete all transactions ? You can't undo this action.",
                     [
                         { text: "Cancel", style: "default" },
-                        { text: "Delete", style: "destructive", onPress: () => deleteAllTransactions() },
+                        { text: "Delete", style: "destructive", onPress: async () => {
+                            try {
+                                await deleteAllTransactions();
+                                setTimeout(() => router.replace('/'), 1200);
+                            } catch (error) {
+                                Alert.alert("Error", "Failed to delete all transactions")
+                                console.error("Error deleting all transactions: ", error);
+                            }
+                        } },
                     ]
                 )
             }}

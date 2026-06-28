@@ -2,6 +2,7 @@ import Button from '@/src/shared/components/button';
 import { Transaction } from '@/src/shared/db/schema';
 import * as DocumentPicker from 'expo-document-picker';
 import { File } from 'expo-file-system';
+import { router } from 'expo-router';
 import Papa from 'papaparse';
 import React from 'react';
 import { Alert } from 'react-native';
@@ -50,6 +51,8 @@ export default function ImportButton() {
                         }
                     })
                 }
+
+                setTimeout(() => router.replace('/'), 1200);
             } catch (error) {
                 console.error("CSV Parse Error :", error);
                 Alert.alert("Failed", "Faile to parse CSV file. Try again. and choose a valid CSV file.");
