@@ -1,3 +1,5 @@
+import { useInsightsStore } from '@/src/features/insights/store/useInsightsStore';
+import { useTransactionStore } from '@/src/features/transactions/store/useTransactionStore';
 import { useUserStore } from '@/src/features/user/store/useUserStore';
 import { SummaryType } from '@/src/shared/common.types';
 import Container from '@/src/shared/components/ui/container';
@@ -13,12 +15,14 @@ type Props = {
 
 
 export default function ReportCard({ summary }: Props) {
-    const [selectedMonth, setSelectedMonth] = React.useState('All');
+    // const [selectedMonth, setSelectedMonth] = React.useState('All');
 
     const styles = useStyles();
     const { COLORS, TYPOGRAPHY } = useThemeStore();
 
     const { currencySymbol } = useUserStore();
+    const { transactions } = useTransactionStore();
+    const { selectedMonth, balance, expense, income, loadMonthlySummary } = useInsightsStore();
 
     const pieChartData: pieDataItem[] = [
         { value: summary.balance, color: COLORS.text.accent },
@@ -27,11 +31,8 @@ export default function ReportCard({ summary }: Props) {
     ]
 
     React.useEffect(() => {
-        const now = new Date();
-        const month = now.toLocaleString('default', { month: 'long' });
-
-        setSelectedMonth(month)
-    }, [])
+        loadMonthlySummary({ month: selectedMonth, transactions: transactions })
+    }, [selectedMonth, transactions, loadMonthlySummary]);
 
     return (
         <Container>
@@ -74,7 +75,7 @@ export default function ReportCard({ summary }: Props) {
                                 fontSize: TYPOGRAPHY.body.sm,
                                 color: COLORS.text.secondary,
                             }}
-                        >Total Spent</Text>
+                        >Available Balance</Text>
 
                         <View style={{ gap: 4 }}>
                             <Text
@@ -82,17 +83,17 @@ export default function ReportCard({ summary }: Props) {
                                     fontSize: 29,
                                     color: COLORS.text.primary,
                                 }}
-                            >{currencySymbol}{Math.abs(summary.expense)}</Text>
+                            >{currencySymbol}{Math.abs(balance.amount)}</Text>
 
-                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                <Ionicons name="arrow-up" size={23} color={COLORS.text.accent} />
+                            {(balance.percentage!==0) && <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <Ionicons name={balance.percentage > 0 ? 'arrow-up' : 'arrow-down'} size={20} color={balance.percentage > 0 ? COLORS.semantic.success.base : COLORS.semantic.warning.base} />
                                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                                     <Text
                                         style={{
                                             fontSize: TYPOGRAPHY.body.sm,
-                                            color: COLORS.text.accent,
+                                            color: balance.percentage > 0 ? COLORS.semantic.success.base : COLORS.semantic.warning.base,
                                         }}
-                                    >12%</Text>
+                                    >{balance.percentage}%</Text>
                                     <Text
                                         style={{
                                             fontSize: TYPOGRAPHY.body.sm,
@@ -100,7 +101,7 @@ export default function ReportCard({ summary }: Props) {
                                         }}
                                     >from last month</Text>
                                 </View>
-                            </View>
+                            </View>}
                         </View>
                     </View>
 
@@ -123,11 +124,11 @@ export default function ReportCard({ summary }: Props) {
                 <View style={styles.StatsContainer}>
                     <View style={styles.StatsDataContainer}>
                         <Text style={styles.StatsText}>income</Text>
-                        <Text style={[styles.StatsAmount, { color: COLORS.text.accent }]}>+{currencySymbol}{Math.abs(summary.income)}</Text>
+                        <Text style={[styles.StatsAmount, { color: COLORS.text.accent }]}>+{currencySymbol}{Math.abs(income.amount)}</Text>
                     </View>
                     <View style={styles.StatsDataContainer}>
-                        <Text style={styles.StatsText}>balance</Text>
-                        <Text style={[styles.StatsAmount, { color: COLORS.text.primary }]}>+{currencySymbol}{Math.abs(summary.balance)}</Text>
+                        <Text style={styles.StatsText}>expense</Text>
+                        <Text style={[styles.StatsAmount, { color: COLORS.text.primary }]}>-{currencySymbol}{Math.abs(expense.amount)}</Text>
                     </View>
                 </View>
             </View>
