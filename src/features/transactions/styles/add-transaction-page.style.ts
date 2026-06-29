@@ -51,6 +51,7 @@ export const useStyle = () => {
       flexDirection: "row",
       gap: 12,
       alignItems: "center",
+      overflow: "hidden",
     },
   });
 };

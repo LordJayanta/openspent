@@ -164,7 +164,7 @@ export default function Create() {
               <Container style={styles.noteContainer}>
                 <Ionicons name="pencil-sharp" color={COLORS.text.secondary} size={24} />
                 <TextInput
-                  placeholder='Title? What was for did ? (optional)'
+                  placeholder='e.g., Pizza? Netflix sub..? (optional)'
                   style={{ color: COLORS.text.primary, fontSize: TYPOGRAPHY.body.sm }}
                   placeholderTextColor={COLORS.text.tertiary}
                   cursorColor={COLORS.text.accent}
@@ -178,7 +178,7 @@ export default function Create() {
               <Container style={styles.noteContainer}>
                 <Ionicons name="document-outline" color={COLORS.text.secondary} size={24} />
                 <TextInput
-                  placeholder='Add a note (optional)'
+                  placeholder='e.g., Want to remember anything ? (op..)'
                   style={{ color: COLORS.text.primary, fontSize: TYPOGRAPHY.body.sm }}
                   placeholderTextColor={COLORS.text.tertiary}
                   cursorColor={COLORS.text.accent}
