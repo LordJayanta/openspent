@@ -3,6 +3,7 @@ import AboutSection from '@/src/features/settings/components/sections/about-sect
 import DataSection from '@/src/features/settings/components/sections/data-section'
 import PreferencesSection from '@/src/features/settings/components/sections/preferences-section'
 import SecuritySection from '@/src/features/settings/components/sections/security-section'
+import FooterBranding from '@/src/shared/components/footer-branding'
 import AppBar from '@/src/shared/components/ui/app-bar'
 import Section from '@/src/shared/components/ui/section'
 import { useGlobalStyle } from '@/src/shared/styles/globalStyle'
@@ -30,6 +31,7 @@ export default function Settings() {
           <SecuritySection />
           <DataSection />
           <AboutSection />
+          <FooterBranding />
         </Section>
       </ScrollView>
     </View>

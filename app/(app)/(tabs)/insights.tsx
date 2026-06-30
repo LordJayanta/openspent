@@ -4,6 +4,7 @@ import ProgressCard from '@/src/features/insights/components/progress-card'
 import SummaryCard from '@/src/features/insights/components/summary-card'
 import { useInsightsStore } from '@/src/features/insights/store/useInsightsStore'
 import { useTransactionStore } from '@/src/features/transactions/store/useTransactionStore'
+import FooterBranding from '@/src/shared/components/footer-branding'
 import NoTransactionsFound from '@/src/shared/components/no-data-found'
 import AppBar from '@/src/shared/components/ui/app-bar'
 import Section from '@/src/shared/components/ui/section'
@@ -56,6 +57,7 @@ const Analytics = () => {
               <CategoryOverview />
               <BarChartSection />
 
+              <FooterBranding />
             </Section>
           </ScrollView>
         )}

@@ -1,6 +1,7 @@
 import RecentTransactions from "@/src/features/dashboard/components/sections/recent-transactions";
 import ReportCard from "@/src/features/dashboard/components/sections/report-card";
 import { useTransactionStore } from "@/src/features/transactions/store/useTransactionStore";
+import FooterBranding from "@/src/shared/components/footer-branding";
 
 import AppBar from "@/src/shared/components/ui/app-bar";
 import Section from "@/src/shared/components/ui/section";
@@ -38,7 +39,7 @@ export default function Index() {
     >
       <AppBar
         title="OpenSpent"
-        centerAction={{ Icon: 'reorder-three' }}
+        centerAction={{ type: "LOGO", size: 32 }}
       />
       <Section style={{ flex: 1, gap: 32 }}>
         {/* Greeting */}
@@ -64,6 +65,7 @@ export default function Index() {
         {/* Recent Transactions */}
         <RecentTransactions limit={5} />
 
+        <FooterBranding />
       </Section>
     </ScrollView>
   );

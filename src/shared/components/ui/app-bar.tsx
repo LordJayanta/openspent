@@ -1,5 +1,6 @@
 import { IoniconsName } from '@/src/shared/type/type'
 import { Ionicons } from '@expo/vector-icons'
+import { Image } from 'expo-image'
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { useThemeStore } from '../../theme/store/useThemeStore'
@@ -15,7 +16,7 @@ type Props = {
     title: string;
     leftAction?: IconProps;
     rightAction?: IconProps;
-    centerAction?: IconProps;
+    centerAction?: IconProps & { type?: 'LOGO' | 'ICON' };
 }
 
 export default function AppBar({
@@ -23,7 +24,7 @@ export default function AppBar({
     leftAction,
     rightAction,
     centerAction
-    
+
 }: Props) {
     const { COLORS } = useThemeStore();
     const styles = useStyle();
@@ -42,9 +43,13 @@ export default function AppBar({
 
 
             {centerAction ?
-                (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-                    <TouchableOpacity onPress={centerAction.onPress}  style={styles.iconContainer}>
-                        <Ionicons name={centerAction.Icon} size={centerAction.size || 30} color={COLORS.text.primary} />
+                (<View style={{ flexDirection: 'row', alignItems: 'center', gap: centerAction?.type === 'ICON' ? 14 : 8 }}>
+                    <TouchableOpacity onPress={centerAction.onPress} style={styles.iconContainer}>
+                        {centerAction?.type === 'ICON' && <Ionicons name={centerAction.Icon} size={centerAction.size || 30} color={COLORS.text.primary} />}
+                        {centerAction.type === 'LOGO' && <Image
+                            style={{ width: 43, height: 43 }}
+                            source={require('@/assets/images/icon.png')}
+                        />}
                     </TouchableOpacity>
                     <Text style={styles.title}>{title}</Text>
                 </View>
