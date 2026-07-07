@@ -1,9 +1,10 @@
+import { OpenWebBrowser } from '@/src/features/web-browser/utils/web-browser';
 import Container from '@/src/shared/components/ui/container';
 import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
 import { IoniconsName } from '@/src/shared/type/type';
 import { Ionicons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
-import { ExternalPathString, Href, router } from 'expo-router';
+import { ExternalPathString, Href } from 'expo-router';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
@@ -12,8 +13,8 @@ type Items = {
   iconName: IoniconsName;
   herf?: Href,
   children?: React.ReactNode;
-
 }
+
 
 
 export default function AboutSection() {
@@ -34,12 +35,12 @@ export default function AboutSection() {
     {
       text: 'Privacy Policy',
       iconName: 'shield-half',
-      herf: 'https://github.com/LordJayanta/openspent'
+      herf: 'https://lordjayanta.github.io/openspent.site/#/privacy'
     },
     {
       text: 'Terms of Service',
       iconName: 'document-text-outline',
-      herf: 'https://github.com/LordJayanta/openspent'
+      herf: 'https://lordjayanta.github.io/openspent.site/#/terms'
     },
     {
       text: 'Github',
@@ -52,7 +53,7 @@ export default function AboutSection() {
   return (
     <Container style={styles.container}>
       {items.map((item: Items) => (
-        <TouchableOpacity key={item.text} onPress={item.herf && (() => router.push(item?.herf as ExternalPathString))}>
+        <TouchableOpacity key={item.text} onPress={item.herf && (() => OpenWebBrowser(item?.herf as ExternalPathString))}>
           <View style={styles.items}>
             <View style={styles.info}>
               <Ionicons name={item.iconName} size={20} color={COLORS.text.primary} />
