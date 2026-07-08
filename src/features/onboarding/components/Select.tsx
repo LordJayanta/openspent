@@ -1,13 +1,15 @@
-import { COLORS } from '@/src/shared/constant/colors'
-import { Picker } from '@react-native-picker/picker'
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
+import { Picker } from '@react-native-picker/picker';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 
 export default function Select({ value, onChange, options }: {
     value?: string,
     onChange: (text: string) => void,
     options: { code: string; symbol: string; name: string }[]
 }) {
+    const styles = useStyles();
+    
     return (
         <View style={styles.pickerContainer}>
             <Picker
@@ -26,18 +28,22 @@ export default function Select({ value, onChange, options }: {
     )
 }
 
-const styles = StyleSheet.create({
-    pickerContainer: {
-        flex: 1,
-        borderWidth: 1,
-        borderColor: COLORS.primary,
-        backgroundColor: COLORS.surface,
-        borderRadius: 1000,
-        paddingHorizontal: 16,
-    },
-    picker: {
-        flex: 1,
-        width: 'auto',
-        color: COLORS.light,
-    },
-})
+const useStyles = () => {
+    const { COLORS } = useThemeStore();
+
+    return StyleSheet.create({
+        pickerContainer: {
+            flex: 1,
+            borderWidth: 1,
+            borderColor: COLORS.semantic.success.border,
+            backgroundColor: COLORS.surface.lv1,
+            borderRadius: 1000,
+            paddingHorizontal: 16,
+        },
+        picker: {
+            flex: 1,
+            width: 'auto',
+            color: COLORS.text.primary,
+        },
+    })
+}

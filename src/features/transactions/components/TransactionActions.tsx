@@ -1,9 +1,9 @@
+import { useThemeStore } from '@/src/shared/theme/store/useThemeStore'
 import { Ionicons } from '@expo/vector-icons'
 import { LinearGradient } from 'expo-linear-gradient'
 import { router } from 'expo-router'
 import React from 'react'
 import { Alert, Modal, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { COLORS } from '../../../shared/constant/colors'
 import { useTransactionStore } from '../store/useTransactionStore'
 import { TransactionType } from '../types/types'
 
@@ -14,6 +14,7 @@ type Props = {
 }
 export default function TransactionActions({ data, onClose, isOpen }: Props) {
     const { deleteTransaction } = useTransactionStore();
+    const { COLORS } = useThemeStore();
 
     const handleDelete = async (data: TransactionType) => {
         try {
@@ -47,16 +48,16 @@ export default function TransactionActions({ data, onClose, isOpen }: Props) {
                                 })
                             }}
                             activeOpacity={0.3}
-                            style={[styles.iconContainer, { backgroundColor: COLORS.gray, width: 56, height: 56 }]}
+                            style={[styles.iconContainer, { backgroundColor: COLORS.background.tertiary, width: 56, height: 56 }]}
                         >
-                            <Ionicons name="pencil-sharp" color={COLORS.tertiary} size={18} />
+                            <Ionicons name="pencil-sharp" color={COLORS.semantic.danger.base} size={18} />
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress={()=> handleDelete(data)}
                             activeOpacity={0.3}
-                            style={[styles.iconContainer, { backgroundColor: COLORS.gray, width: 56, height: 56 }]}
+                            style={[styles.iconContainer, { backgroundColor: COLORS.semantic.danger.bg, width: 56, height: 56 }]}
                         >
-                            <Ionicons name="trash" color={COLORS.secondary} size={18} />
+                            <Ionicons name="trash" color={COLORS.semantic.danger.base} size={18} />
                         </TouchableOpacity>
                     </LinearGradient>
                 </View>
@@ -70,7 +71,6 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: '15%',
-        // backgroundColor: COLORS.gray,
         position: 'absolute',
         bottom: 0
     },

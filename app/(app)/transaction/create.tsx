@@ -1,4 +1,3 @@
-import { commonStyles } from '@/assets/styles/common.style'
 import CategoryItem from '@/src/features/transactions/components/category-item'
 import LinnerShodow from '@/src/features/transactions/components/linner-shodow'
 import { CATEGORIES, CategoryKey } from '@/src/features/transactions/constant/Category'
@@ -196,8 +195,8 @@ export default function Create() {
 
       {/* Final Save Button */}
       <View style={styles.createButtonContainer}>
-        <TouchableOpacity style={commonStyles.primaryButton} onPress={() => handleAddTransaction()}>
-          <Text style={[commonStyles.clickableBtn, { textTransform: "uppercase", color: COLORS.text.primary }]}>Save</Text>
+        <TouchableOpacity style={globalStyles.primaryButton} onPress={() => handleAddTransaction()}>
+          <Text style={[globalStyles.primaryButtonText, { textTransform: "uppercase", color: COLORS.text.primary }]}>Save</Text>
         </TouchableOpacity>
       </View>
     </View>

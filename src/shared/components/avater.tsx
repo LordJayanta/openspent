@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { COLORS } from '../constant/colors';
+import { useThemeStore } from '../theme/store/useThemeStore';
 
 type Props = {
     name?: string;
@@ -34,6 +34,7 @@ const getInitials = (name: string) => {
 export default function Avater({ name = "Guest" }: Props) {
 
     const word = getInitials(name);
+    const styles = useStyles();
 
     return (
         <View style={styles.container}>
@@ -45,18 +46,22 @@ export default function Avater({ name = "Guest" }: Props) {
 
 
 
-const styles = StyleSheet.create({
-    container: {
-        width: 32,
-        height: 32,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: COLORS.tertiary,
-        borderRadius: 1000,
-        overflow: 'hidden',
-    },
-    word: {
-        color: COLORS.light,
-    }
-});
+const useStyles = () => {
+    const { COLORS } = useThemeStore();
+
+    return StyleSheet.create({
+        container: {
+            width: 32,
+            height: 32,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: COLORS.background.tertiary,
+            borderRadius: 1000,
+            overflow: 'hidden',
+        },
+        word: {
+            color: COLORS.text.primary,
+        }
+    });
+}

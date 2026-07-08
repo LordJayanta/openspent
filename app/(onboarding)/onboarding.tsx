@@ -4,7 +4,6 @@ import OnboardScreen, { type OnboardingData } from '@/src/features/onboarding/co
 import OnbordForm from '@/src/features/onboarding/components/OnbordForm';
 import Select from '@/src/features/onboarding/components/Select';
 import { useUserStore } from '@/src/features/user/store/useUserStore';
-import { COLORS } from '@/src/shared/constant/colors';
 import { CURRENCIES } from '@/src/shared/constant/CURRENCIES';
 import { router } from 'expo-router';
 import React, { useEffect, useState } from 'react';
@@ -19,6 +18,7 @@ import noWifiImg from "@/src/features/onboarding/assets/img/No-Wi-Fi-under-glowi
 import privacyShieldImg from "@/src/features/onboarding/assets/img/privacy-shield-1x1.webp";
 import successImg from "@/src/features/onboarding/assets/img/success-1x1.webp";
 import userImg from "@/src/features/onboarding/assets/img/user-1x1.webp";
+import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
 
 export default function Onboarding() {
   const [currentPage, setCurrentPage] = useState(0);
@@ -31,7 +31,7 @@ export default function Onboarding() {
   const scrollX = React.useRef(new Animated.Value(0)).current;
 
   const { id, loadUser, updateUser } = useUserStore();
-
+  const { COLORS } = useThemeStore();
 
   const onboardingData: OnboardingData[] = [
     {
@@ -186,8 +186,8 @@ export default function Onboarding() {
           containerStyle={{
             bottom: 20
           }}
-          activeDotColor={COLORS.primary}
-          inActiveDotColor={COLORS.text}
+          activeDotColor={COLORS.primary[500]}
+          inActiveDotColor={COLORS.text.secondary}
         />
       </View>
 

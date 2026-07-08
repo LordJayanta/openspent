@@ -1,9 +1,10 @@
-import { COLORS } from '@/src/shared/constant/colors';
+import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
 import { Ionicons, } from '@expo/vector-icons';
 import React from 'react';
 import { Image, ImageSourcePropType, Text, useWindowDimensions, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { style } from '../assets/styles/style';
+import { useStyle } from '../assets/styles/style';
+
 
 export type OnboardingData = {
     id: number;
@@ -21,13 +22,15 @@ export type OnboardingData = {
 export default function OnboardScreen({ data }: { data: OnboardingData }) {
     const { title, description, image, imageHeight, message, form } = data;
     const { width } = useWindowDimensions();
+    const { COLORS } = useThemeStore();
+    const styles = useStyle();
+
     return (
         <View style={{
             flex: 1,
             backgroundColor: '#0E0E0D',
             height: '100%'
         }}>
-
             <KeyboardAwareScrollView
                 keyboardShouldPersistTaps="handled"
                 enableOnAndroid
@@ -35,16 +38,16 @@ export default function OnboardScreen({ data }: { data: OnboardingData }) {
             >
 
                 {/* Hero Section */}
-                <View style={style.heroContainer}>
-                    <Text style={style.heroTitle}>{title}</Text>
-                    <Text style={style.heroText}>{description}</Text>
+                <View style={styles.heroContainer}>
+                    <Text style={styles.heroTitle}>{title}</Text>
+                    <Text style={styles.heroText}>{description}</Text>
                 </View>
 
                 <Image
                     source={image}
                     width={width}
                     height={imageHeight ? imageHeight : width}
-                    style={[style.img, {
+                    style={[styles.img, {
                         width: width,
                         height: imageHeight || width,
                         resizeMode: 'contain'
@@ -61,18 +64,18 @@ export default function OnboardScreen({ data }: { data: OnboardingData }) {
                 bottom: 60
             }}>
                 {message?.type === 'secure'
-                    ? <View style={[style.message, { justifyContent: 'center' }]}>
+                    ? <View style={[styles.message, { justifyContent: 'center' }]}>
                         <Ionicons name={'shield-checkmark'}
                             size={40}
-                            color={COLORS.primary} />
-                        <Text style={style.messageText}>{message?.text}</Text>
+                            color={COLORS.semantic.success.base} />
+                        <Text style={styles.messageText}>{message?.text}</Text>
                     </View>
-                    : <View style={[style.message, { justifyContent: 'space-between' }]}>
+                    : <View style={[styles.message, { justifyContent: 'space-between' }]}>
                         <Ionicons name={'document-attach'}
                             size={40}
-                            color={COLORS.tertiary} />
-                        <Text style={style.messageText}>{message?.text}</Text>
-                        <Ionicons name="arrow-forward-circle" size={24} color={COLORS.tertiary} />
+                            color={COLORS.semantic.info.base} />
+                        <Text style={styles.messageText}>{message?.text}</Text>
+                        <Ionicons name="arrow-forward-circle" size={24} color={COLORS.semantic.info.base} />
                     </View>
                 }
             </View>
