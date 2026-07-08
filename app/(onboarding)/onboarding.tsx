@@ -13,6 +13,13 @@ import { ExpandingDot } from "react-native-animated-pagination-dots";
 import PagerView from 'react-native-pager-view';
 
 
+import chooseCurrencyImg from "@/src/features/onboarding/assets/img/choose-currency-green-shadow-1x1.webp";
+import noDataColocationImg from "@/src/features/onboarding/assets/img/no-data-colocation-1x1.webp";
+import noWifiImg from "@/src/features/onboarding/assets/img/No-Wi-Fi-under-glowing-green-sky-1x1.webp";
+import privacyShieldImg from "@/src/features/onboarding/assets/img/privacy-shield-1x1.webp";
+import successImg from "@/src/features/onboarding/assets/img/success-1x1.webp";
+import userImg from "@/src/features/onboarding/assets/img/user-1x1.webp";
+
 export default function Onboarding() {
   const [currentPage, setCurrentPage] = useState(0);
   const [inputData, setInputData] = useState({
@@ -31,7 +38,7 @@ export default function Onboarding() {
       id: 1,
       title: "Completly Offline Frist",
       description: "Works 100% offline first. No internet connection required.",
-      image: require("@/src/features/onboarding/assets/img/wifi-offline-1x1.png"),
+      image: noWifiImg,
       message: {
         type: "secure",
         text: "All your data stays, secure only on this device ",
@@ -41,7 +48,7 @@ export default function Onboarding() {
       id: 2,
       title: "High Security",
       description: "Your data is encrypted and protected with strong Security.",
-      image: require("@/src/features/onboarding/assets/img/privacy-shield-1x1.png"),
+      image: privacyShieldImg,
       message: {
         type: "secure",
         text: "Bult for privacy, Build for you.",
@@ -51,7 +58,7 @@ export default function Onboarding() {
       id: 3,
       title: "No Data Colocation & Share",
       description: "Your data is encrypted and protected with strong Security.",
-      image: require("@/src/features/onboarding/assets/img/no-data-colocation-1x1.png"),
+      image: noDataColocationImg,
       message: {
         type: "secure",
         text: "Your data. Your Control. Always.",
@@ -61,7 +68,7 @@ export default function Onboarding() {
       id: 4,
       title: "What We Call You ?",
       description: "Enter you name to personalize you experience",
-      image: require("@/src/features/onboarding/assets/img/user-1x1.png"),
+      image: userImg,
       imageHeight: 255,
       message: {
         type: "database",
@@ -86,7 +93,7 @@ export default function Onboarding() {
       id: 5,
       title: "Set Currency",
       description: "Select Your preferred currency to continue",
-      image: require("@/src/features/onboarding/assets/img/choose-currency-INR-1x1.png"),
+      image: chooseCurrencyImg,
       imageHeight: 255,
       message: {
         type: "database",
@@ -112,7 +119,7 @@ export default function Onboarding() {
       id: 6,
       title: "Welcome! Let’s get started",
       description: "You’re All Set! You are Ready to Go And Enjoy....",
-      image: require("@/src/features/onboarding/assets/img/success-1x1.png"),
+      image: successImg,
       message: {
         type: "database",
         text: "Loading Existing Database, Select Local db file",
