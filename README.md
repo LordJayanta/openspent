@@ -1,82 +1,86 @@
-# OpenSpent 🪙 || (formerly SpendWise)
+# OpenSpent 🪙
 
-**A professional, offline-first personal finance tracker built with React Native and Expo. (Formerly SpendWise)**
+**A professional, offline-first personal finance companion built with React Native and Expo.**
 
-![Version](https://img.shields.io/badge/version-1.0.0--dev-orange)
-![Size](https://img.shields.io/badge/APK--Size-45.6MB-blue)
-![License](https://img.shields.io/badge/license-Apache--2.0-blue)
-![Platform](https://img.shields.io/badge/platform-Android-green)
+<p align="center">
+  <img src='./assets/images/icon.png' alt='OpenSpent Logo' width='160' height='160' />
+</p>
 
-OpenSpent is a lightweight, secure expense manager designed to give you full control over your financial data. Built with a focus on performance and reliability, it stores everything locally on your device—no cloud, no tracking, just your data.
+<p align="center">
+  <img src="https://img.shields.io/badge/version-1.0.0--stable-green" alt="Version" />
+  <img src="https://img.shields.io/badge/APK--Size-Optimized-blue" alt="Size" />
+  <img src="https://img.shields.io/badge/license-Apache--2.0-blue" alt="License" />
+  <img src="https://img.shields.io/badge/platform-Android-green" alt="Platform" />
+</p>
 
-> 🚀 **WELCOME TO OPENSPENT (formerly SpendWise)**  
-> This project has officially been rebranded from **SpendWise** to **OpenSpent**! We are currently in active development for the **v1.0.0 Production Launch**, which includes a massive UI/UX overhaul.
->
-> _If you are an existing user looking for the final legacy SpendWise app, you can still download [v0.4.0 from the Releases page](https://github.com/LordJayanta/openspent/releases/tag/v0.4.0). You can use the CSV Export feature in v0.4.0 to migrate your data to OpenSpent once v1.0.0 is released!_
+OpenSpent (formerly **SpendWise**) is a lightweight, high-performance expense manager designed to put users in total control of their financial data. Engineered with an offline-first philosophy, it ensures that your records never leave your device, prioritizing privacy and speed above all else.
 
 ---
 
-## ✨ Key Features (v1.0.0-dev)
+## ✨ Key Features (v1.0.0 Stable)
 
-- 🔒 **Biometric Security**: Hardware-level app locking using FaceID or Fingerprint (`expo-local-authentication`), featuring background-to-foreground AppState monitoring.
-- 📁 **Data Portability**: Complete CSV Export and Import using `PapaParse`. Your data belongs to you.
-- 👋 **User Onboarding**: A smooth, swipable tutorial and guest profile setup using `react-native-pager-view`.
-- 🧭 **Tab Navigation**: Modular Tab-based navigation system for seamless user flow.
-- 📈 **Visual Analytics**: Beautiful, interactive **Pie Charts** to visualize spending habits by category.
-- 🏦 **Local Persistence**: Powered by **SQLite** with **Drizzle ORM** for industrial-grade data reliability.
-- ⚡ **Advanced State Management**: Optimized **Zustand** store for lightning-fast global state synchronization.
-- ⚙️ **Production Optimized**: Keyboard-aware scrolling, ProGuard shrinking, and debug log stripping for a high-performance footprint.
+### 🎨 Design & Experience
+
+- **v1.0.0 Design System**: A completely custom, Figma-to-Code UI overhaul for a premium product feel.
+- **Dynamic Theming**: Persistent Dark and Light mode support with a centralized theme engine.
+- **Semantic UI**: Robust button and interaction system with semantic variants (Success, Danger, Warning, Info).
+- **Smooth Performance**: Powered by **@shopify/flash-list** for 60FPS scrolling even with thousands of records.
+
+### 🛡️ Security & Privacy
+
+- **Biometric Locking**: Integrated hardware-level security (FaceID/Fingerprint) with background AppState protection.
+- **Privacy First**: No cloud syncing, no tracking, and zero internet permissions required for core functionality.
+
+### ⚙️ Data & Logic
+
+- **Enterprise Architecture**: Built using a modular Feature-Based structure, **Zustand** state management, and **Drizzle ORM**.
+- **Data Portability**: Industrial-grade CSV Import and Export powered by **PapaParse** for easy backups and migrations.
+- **Deep Insights**: Visual spending analytics with category-specific breakdown and monthly growth tracking.
 
 ---
 
 ## 🛠 Tech Stack
 
-- **Framework**: [Expo](https://expo.dev/) (React Native)
-- **Database**: [expo-sqlite](https://docs.expo.dev/versions/latest/sdk/sqlite/) with [Drizzle ORM](https://orm.drizzle.team/)
-- **State Management**: [Zustand](https://zustand-demo.pmnd.rs/) (with AsyncStorage persistence)
-- **Data Parsing**: PapaParse (CSV serialization/deserialization)
-- **Security**: Expo Local Authentication
-- **Visualization**: `react-native-gifted-charts`
-- **Build Tools**: EAS Build (Cloud), ProGuard/R8, Babel
-- **Engine**: Hermes (Optimized Bytecode)
+| Layer             | Technology                                                               |
+| :---------------- | :----------------------------------------------------------------------- |
+| **Framework**     | Expo (React Native)                                                      |
+| **Database**      | SQLite + [Drizzle ORM](https://orm.drizzle.team/)                        |
+| **State**         | [Zustand](https://zustand-demo.pmnd.rs/) (with AsyncStorage Persistence) |
+| **Parsing**       | PapaParse (CSV Serialization)                                            |
+| **List Engine**   | [@shopify/flash-list](https://shopify.github.io/flash-list/)             |
+| **Visualization** | `react-native-gifted-charts`                                             |
+| **Optimizations** | Hermes Engine, ProGuard/R8, WebP Compression                             |
 
 ---
 
-## 📦 Installation & Use
+## 📦 Installation
 
-### For Users (Stable Legacy Release)
+### For Users
 
-You can download the final legacy SpendWise APK directly to your Android device:
+Download the official v1.0.0 stable release:
 
 1. Go to the [Releases](https://github.com/LordJayanta/openspent/releases) page.
-2. Download `SpendWise_v0.4.0.apk`.
-3. Install the APK on your phone. _(The official OpenSpent v1.0.0 APK is coming soon!)_
+2. Download `OpenSpent_v1.0.0.apk`.
+3. Install the APK on your Android device.
 
-### For Developers (Current Dev Branch)
+> **Note for Legacy Users**: If you are migrating from the old "SpendWise" (v0.4.0), please export your data to CSV in the old app and import it into OpenSpent v1.0.0.
 
-To run the new OpenSpent project locally:
+### For Developers
 
-1. **Clone the repo:**
-   ```bash
-   git clone https://github.com/LordJayanta/openspent.git
-   cd openspent
-   ```
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-3. **Start the development server:**
-   ```bash
-   npx expo start
-   ```
+```bash
+git clone https://github.com/LordJayanta/openspent.git
+cd openspent
+npm install
+npx expo start
+```
 
 ---
 
-## 🧠 Developer Diary & Learnings
+## 🧠 Engineering Insights
 
-Throughout the development of this app, I documented the major technical challenges, Git workflows, and build optimization strategies I mastered.
+This project serves as a showcase of modern mobile development patterns. I documented the technical challenges, Git workflows, and architectural decisions in my developer diary:
 
-👉 **[Read the Developer Cheatsheet & Learnings](./docs/LEARNINGS.md)**
+👉 **[Read the Developer Learnings & Cheatsheet](./docs/LEARNINGS.md)**
 
 ---
 
@@ -86,9 +90,14 @@ Distributed under the **Apache License 2.0**. See `LICENSE` for more information
 
 ---
 
-## 🤝 Contact
+## 🤝 Support & Contact
 
-> Maintained by LordJayanta
+> Maintained by [LordJayanta](https://github.com/LordJayanta)
 
-**LordJayanta** - [@GitHub](https://github.com/LordJayanta)  
-Project Link: [https://github.com/LordJayanta/openspent](https://github.com/LordJayanta/openspent)
+**GitHub/LordJayanta** - [@LordJayanta](https://github.com/LordJayanta)  
+**OpnenSpent.site** - [Official Website](https://lordjayanta.github.io/openspent.site/)  
+**Project Link**: [https://github.com/LordJayanta/openspent](https://github.com/LordJayanta/openspent)
+
+---
+
+<p align="center">Built with ❤️ for better financial clarity.</p>
