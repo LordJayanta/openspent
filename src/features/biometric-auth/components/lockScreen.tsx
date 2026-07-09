@@ -71,7 +71,7 @@ const useStyles = () => {
             fontSize: 14,
             fontFamily: 'Inter',
             fontWeight: 'regular',
-            color: COLORS.text.accent,
+            color: COLORS.text.secondary,
         }
     });
 }

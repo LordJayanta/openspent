@@ -51,18 +51,46 @@ function useStyles() {
 
     const buttonVariants = StyleSheet.create({
         natural: {
-            backgroundColor: COLORS.background.base,
+            backgroundColor: COLORS.background.secondary,
+            borderWidth: 1,
+            borderColor: COLORS.border.default,
+        },
+        success: {
+            backgroundColor: COLORS.semantic.success.bg,
+            borderWidth: 1,
+            borderColor: COLORS.semantic.success.border,
         },
         destructive: {
-            backgroundColor: COLORS.semantic.danger.bg
+            backgroundColor: COLORS.semantic.danger.bg,
+            borderWidth: 1,
+            borderColor: COLORS.semantic.danger.border,
+        },
+        warning: {
+            backgroundColor: COLORS.semantic.warning.bg,
+            borderWidth: 1,
+            borderColor: COLORS.semantic.warning.border,
+        },
+        info: {
+            backgroundColor: COLORS.semantic.info.bg,
+            borderWidth: 1,
+            borderColor: COLORS.semantic.info.border,
         },
     })
     const buttonText = StyleSheet.create({
         natural: {
-            color: COLORS.text.primary
+            color: COLORS.text.primary,
         },
         destructive: {
-            color: COLORS.semantic.danger.base
+            color: COLORS.semantic.danger.base,
+        },
+        success: {
+            color: COLORS.semantic.success.base,
+        },
+        warning: {
+            color: COLORS.semantic.warning.base,
+        },
+        info: {
+            color: COLORS.semantic.info.base,
         },
     })
 
