@@ -3,22 +3,24 @@ import ReportCard from "@/src/features/dashboard/components/sections/report-card
 import { useTransactionStore } from "@/src/features/transactions/store/useTransactionStore";
 import FooterBranding from "@/src/shared/components/footer-branding";
 
+import { getGreetingMessage } from "@/src/features/dashboard/utils/get-greeting-message";
 import AppBar from "@/src/shared/components/ui/app-bar";
 import Section from "@/src/shared/components/ui/section";
 import { useGlobalStyle } from "@/src/shared/styles/globalStyle";
 import { useThemeStore } from "@/src/shared/theme/store/useThemeStore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RefreshControl, ScrollView, Text, View } from "react-native";
 
 
 
 export default function Index() {
+  const [greetingMessage, setGreetingMessage] = useState<string>("Welcome.!👋");
   // Styles
   const { COLORS, TYPOGRAPHY } = useThemeStore();
   const globalStyles = useGlobalStyle();
 
   // Global States
-  const { loadDatabase, summary } = useTransactionStore()
+  const { loadDatabase, summary } = useTransactionStore();
   const [refreshTransactions, setRefreshTransactions] = useState<boolean>(false);
 
   const handleRefreshTransactions = async () => {
@@ -27,6 +29,10 @@ export default function Index() {
     setRefreshTransactions(false);
   }
 
+  useEffect(() => {
+    const message = getGreetingMessage();
+    setGreetingMessage(message);
+  }, []);
   return (
     <ScrollView
       style={[globalStyles.baseScreen]} //contentContainerStyle
@@ -49,7 +55,7 @@ export default function Index() {
               fontSize: TYPOGRAPHY.heading.h3,
               color: COLORS.text.primary,
             }}
-          >Good Morning! 👋</Text>
+          >{greetingMessage}</Text>
           <Text
             style={{
               fontSize: TYPOGRAPHY.body.md,
