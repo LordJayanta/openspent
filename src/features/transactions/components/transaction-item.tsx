@@ -4,7 +4,7 @@ import { router } from 'expo-router';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Transaction } from '../../../shared/db/schema';
-import { formatDisplayDate, formatDisplayTime } from '../../../shared/utils/formatTime';
+import { formatDisplayDate, formatDisplayTime, parseSqliteUTC } from '../../../shared/utils/formatTime';
 import { useUserStore } from '../../user/store/useUserStore';
 import { CATEGORIES_ICONS, CategoryKey } from '../constant/Category';
 
@@ -24,7 +24,7 @@ export default function TransactionItem({ transaction, sparator }: Props) {
 
   // Check if created_at is valid; fallback to current date if not
   const createdAtStr = String(transaction?.created_at || '');
-  const date = createdAtStr && !isNaN(Date.parse(createdAtStr)) ? new Date(createdAtStr) : new Date();
+  const date = createdAtStr && !isNaN(Date.parse(createdAtStr)) ? parseSqliteUTC(createdAtStr) : new Date();
 
 
   return (

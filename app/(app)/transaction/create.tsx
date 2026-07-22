@@ -11,6 +11,7 @@ import { Transaction } from '@/src/shared/db/schema'
 import { useGlobalStyle } from '@/src/shared/styles/globalStyle'
 import { TYPOGRAPHY } from '@/src/shared/theme/shared/typography'
 import { useThemeStore } from '@/src/shared/theme/store/useThemeStore'
+import { getSqliteTimestamp, parseSqliteUTC } from '@/src/shared/utils/formatTime'
 import { Ionicons } from '@expo/vector-icons'
 import { router, useLocalSearchParams } from 'expo-router'
 import React, { useEffect, useState } from 'react'
@@ -55,7 +56,8 @@ export default function Create() {
         amount: formatedAmount,
         category: SelectedCategory as CategoryKey,
         note: note,
-        id: 0
+        id: 0,
+        created_at: getSqliteTimestamp()
       });
     } else {
       // update transaction on db
@@ -65,7 +67,7 @@ export default function Create() {
         category: SelectedCategory as CategoryKey,
         id: Number(id),
         note: note,
-        created_at: selectedDate.toISOString()
+        created_at: getSqliteTimestamp(selectedDate)
       });
     }
 
@@ -88,7 +90,8 @@ export default function Create() {
           setSelectedCategory(res.category as CategoryKey);
           setTitle(String(res.title));
           setNote(String(res.note));
-          setSelectedDate(res.created_at && !isNaN(Date.parse(res.created_at)) ? new Date(res.created_at) : new Date())
+          setSelectedDate(res.created_at && !isNaN(Date.parse(res.created_at)) ? parseSqliteUTC
+          (res.created_at) : new Date())
         }
       }
     }
