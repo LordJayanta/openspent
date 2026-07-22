@@ -1,5 +1,6 @@
 import { CATEGORIES, CATEGORIES_ICONS, CategoryKey } from '@/src/features/transactions/constant/Category'
 import { useTransactionStore } from '@/src/features/transactions/store/useTransactionStore'
+import Amount from '@/src/shared/components/Amount'
 import Container from '@/src/shared/components/ui/container'
 import ProgressBar from '@/src/shared/components/ui/progress-bar'
 import SectionHeader from '@/src/shared/components/ui/section-header'
@@ -8,7 +9,6 @@ import { Ionicons } from '@expo/vector-icons'
 import { FlashList } from '@shopify/flash-list'
 import React, { useEffect } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { useUserStore } from '../../user/store/useUserStore'
 
 
 type DataType = {
@@ -24,7 +24,6 @@ export default function CategoryOverview() {
   const styles = useStyle();
 
   const [data, setData] = React.useState<DataType[]>([]);
-  const { currencySymbol } = useUserStore();
 
   const generateChartData = () => {
     // Filter Expenses
@@ -86,7 +85,7 @@ export default function CategoryOverview() {
               <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Text style={styles.itemTitle}>{item.title}</Text>
                 <View style={{ flexDirection: 'row', gap: 12 }}>
-                  <Text style={styles.itemAmount}>{currencySymbol}{item.amount}</Text>
+                  <Amount style={styles.itemAmount}>{item.amount}</Amount>
                   <Text style={styles.itemPercentage}>{item.percentage}%</Text>
                 </View>
               </View>
@@ -107,7 +106,7 @@ export const useStyle = () => {
   return StyleSheet.create({
     itemContainer: {
       paddingHorizontal: 10,
-      paddingVertical: 8,
+      paddingVertical: 10,
       flexDirection: 'row',
       gap: 12,
       alignItems: 'center',

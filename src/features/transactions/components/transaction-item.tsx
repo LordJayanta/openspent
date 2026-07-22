@@ -1,3 +1,4 @@
+import Amount from '@/src/shared/components/Amount';
 import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
 import { Ionicons, } from '@expo/vector-icons';
 import { router } from 'expo-router';
@@ -5,7 +6,6 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Transaction } from '../../../shared/db/schema';
 import { formatDisplayDate, formatDisplayTime, parseSqliteUTC } from '../../../shared/utils/formatTime';
-import { useUserStore } from '../../user/store/useUserStore';
 import { CATEGORIES_ICONS, CategoryKey } from '../constant/Category';
 
 type Props = {
@@ -17,9 +17,6 @@ export default function TransactionItem({ transaction, sparator }: Props) {
   const styles = useStyle();
   const { COLORS } = useThemeStore();
 
-  const { currencySymbol } = useUserStore();
-
-  const isIncome = transaction.amount > 0;
   const iconName = CATEGORIES_ICONS[transaction.category as CategoryKey]
 
   // Check if created_at is valid; fallback to current date if not
@@ -46,7 +43,7 @@ export default function TransactionItem({ transaction, sparator }: Props) {
         </View>
 
         {/* Info */}
-        <View style={{ gap: 6 }}>
+        <View style={{ gap: 4 }}>
           <Text style={styles.title}>{transaction.title}</Text>
 
           <View style={styles.subTextContainer}>
@@ -61,12 +58,7 @@ export default function TransactionItem({ transaction, sparator }: Props) {
       </View>
 
       {/* Amount */}
-      <Text
-        style={[
-          styles.amount,
-          isIncome ? { color: '#4AE183' } : { color: '#FFB4A9' }
-        ]}
-      >{isIncome ? '+' : '-'} {currencySymbol}{Math.abs(transaction.amount)}</Text>
+      <Amount>{transaction.amount}</Amount>
     </TouchableOpacity>
   )
 }
@@ -106,11 +98,11 @@ const useStyle = () => {
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
-      gap: 2,
+      gap: 0,
     },
     subText: {
       color: COLORS.text.secondary,
-      fontSize: TYPOGRAPHY.body.sm,
+      fontSize: TYPOGRAPHY.body.tiny,
     },
     dot: {
       width: 15,
@@ -120,7 +112,7 @@ const useStyle = () => {
       alignItems: "center",
     },
     amount: {
-      fontSize: TYPOGRAPHY.body.md,
+      fontSize: TYPOGRAPHY.body.tiny,
     },
   })
 };

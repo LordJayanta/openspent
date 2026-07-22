@@ -1,3 +1,4 @@
+import Amount from '@/src/shared/components/Amount';
 import Container from '@/src/shared/components/ui/container';
 import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
 import { IoniconsName } from '@/src/shared/type/type';
@@ -33,7 +34,7 @@ export default function SummaryCard({ amount, iconName, percentageChange, tenure
                 <Text style={styles.title}>{title}</Text>
                 <View style={{ gap: 6 }}>
                     <View>
-                        <Text style={styles.amount}>{ currencySymbol }{amount}</Text>
+                        <Amount style={styles.amount}>{amount}</Amount>
                     </View>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <Ionicons

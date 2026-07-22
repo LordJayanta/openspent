@@ -37,6 +37,27 @@ export default function Create() {
   const { transactions, addTransaction, updateTransaction } = useTransactionStore();
   const globalStyles = useGlobalStyle();
 
+  const handleAmountChange = (text: string) => {
+      // 1. Replace commas with dots (handy for regional keyboards)
+      let cleaned = text.replace(/,/g, '.');
+
+      // 2. Remove all invalid characters except digits and dots
+      cleaned = cleaned.replace(/[^0-9.]/g, '');
+
+      // 3. Prevent multiple dots (keeps only the first dot)
+      const parts = cleaned.split('.');
+      if (parts.length > 2) {
+        cleaned = `${parts[0]}.${parts.slice(1).join('')}`;
+      }
+
+      // 4. (Optional) Limit to 2 decimal places max
+      if (parts[1] && parts[1].length > 2) {
+        cleaned = `${parts[0]}.${parts[1].slice(0, 2)}`;
+      }
+
+      setAmount(cleaned);
+    };
+
   const handleAddTransaction = async () => {
     const isIncome = SelectedCategory === "Income" || SelectedCategory === "Salary";
 
@@ -91,7 +112,7 @@ export default function Create() {
           setTitle(String(res.title));
           setNote(String(res.note));
           setSelectedDate(res.created_at && !isNaN(Date.parse(res.created_at)) ? parseSqliteUTC
-          (res.created_at) : new Date())
+            (res.created_at) : new Date())
         }
       }
     }
@@ -132,7 +153,7 @@ export default function Create() {
                   maxLength={10}
                   keyboardType="numeric"
                   value={amount}
-                  onChangeText={(text) => setAmount(text.replace(/[^0-9]/g, ''))} // remove non-numeric characters
+                  onChangeText={(text) => handleAmountChange(text)} // remove non-numeric characters
                 />
               </View>
             </View>
