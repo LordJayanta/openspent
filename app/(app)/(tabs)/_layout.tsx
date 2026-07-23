@@ -9,6 +9,13 @@ export default function TabLayout() {
     const { bottom } = useSafeAreaInsets();
     const { COLORS } = useThemeStore();
 
+    // THE SENIOR TRICK: 
+    // If bottom is > 24, it's 3-button navigation. If not, it's gestures.
+    const isThreeButtonNav = bottom > 24;
+
+    // Apply your specific math based on the detection
+    const extraPadding = isThreeButtonNav ? 28 : 65;
+
     return (
         <Tabs
             screenOptions={{
@@ -16,10 +23,10 @@ export default function TabLayout() {
                 tabBarActiveTintColor: COLORS.text.accent,  // active bar icon color
                 tabBarInactiveTintColor: COLORS.text.disabled,  // disabled bar icon color
                 tabBarStyle: {
-                    height: 65 + bottom,
+                    height: extraPadding + bottom,
                     backgroundColor: COLORS.background.base,  // background color
                     borderTopColor: COLORS.border.subtle,  // border color
-                    paddingTop: 8,
+                    paddingTop: 12,
                 },
             }}
             safeAreaInsets={{ bottom: bottom + 12 }}
