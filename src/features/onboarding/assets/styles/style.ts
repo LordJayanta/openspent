@@ -2,7 +2,7 @@ import { useThemeStore } from "@/src/shared/theme/store/useThemeStore";
 import { StyleSheet } from "react-native";
 
 export const useStyle = () => {
-  const { COLORS } = useThemeStore();
+  const { COLORS, TYPOGRAPHY } = useThemeStore();
 
   return StyleSheet.create({
     heroContainer: {
@@ -50,7 +50,7 @@ export const useStyle = () => {
     },
     messageText: {
       width: 200,
-      fontSize: 16,
+      fontSize: TYPOGRAPHY.body.sm,
       fontFamily: "Inter",
       fontWeight: "regular",
       color: COLORS.text.secondary,

@@ -66,7 +66,7 @@ export default function Onboarding() {
     },
     {
       id: 4,
-      title: "What We Call You ?",
+      title: "Who Are You ?",
       description: "Enter you name to personalize you experience",
       image: userImg,
       imageHeight: 255,
