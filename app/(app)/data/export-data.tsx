@@ -1,4 +1,5 @@
-import ExportButton from '@/src/features/export-data/components/export-button';
+import ExportAndSaveButton from '@/src/features/export-data/components/export-and-save-button';
+import ExportAndShareButton from '@/src/features/export-data/components/export-and-share-button';
 import AppBar from '@/src/shared/components/ui/app-bar';
 import Container from '@/src/shared/components/ui/container';
 import Section from '@/src/shared/components/ui/section';
@@ -77,8 +78,9 @@ export default function ExportData() {
         >
           <Ionicons name='chevron-back' size={24} color={COLORS.text.primary} />
         </TouchableOpacity>
-
-        <ExportButton />
+        
+        <ExportAndSaveButton />
+        <ExportAndShareButton />
       </View>
 
     </View>

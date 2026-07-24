@@ -36,8 +36,7 @@ export const createCSVFile = (transactions: Transaction[]) => {
     csvFile.create();
     csvFile.write(data);
 
-    fileUri = csvFile.uri;
-    return fileUri;
+    return csvFile;
   } catch (error) {
     console.error("Error While create CSVFile: ", error);
   }
