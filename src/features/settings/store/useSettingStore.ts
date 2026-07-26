@@ -1,6 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Alert } from "react-native";
 import { create } from "zustand";
-import { AuthType, checkBiometricAuth } from "../../biometric-auth/utils";
+import { checkBiometricAuth } from "../../biometric-auth/utils";
 
 type Settings = {
   isEnableBiometricAuth: boolean;
@@ -14,7 +15,7 @@ type Store = {
   disableBiometricAuth: () => void;
 };
 
-export const useSettingStore = create<Store>((set, get) => ({
+export const useSettingStore = create<Store>((set) => ({
   isEnableBiometricAuth: false,
 
   loadSettings: async () => {
@@ -26,7 +27,12 @@ export const useSettingStore = create<Store>((set, get) => ({
     }
   },
   enableBiometricAuth: async () => {
-    const result = (await checkBiometricAuth()) as AuthType;
+    const result = await checkBiometricAuth();
+
+    if (result?.error) {
+      Alert.alert("Error", result?.error);
+      return;
+    }
 
     if (result?.success) {
       const settings: Settings = {
@@ -34,10 +40,16 @@ export const useSettingStore = create<Store>((set, get) => ({
       };
       await AsyncStorage.setItem("sw_settings", JSON.stringify(settings));
       set({ isEnableBiometricAuth: true });
+      Alert.alert("Success", "Biometric authentication enabled.");
     }
   },
   disableBiometricAuth: async () => {
-    const result = (await checkBiometricAuth()) as AuthType;
+    const result = await checkBiometricAuth();
+
+    if (result?.error) {
+      Alert.alert("Error", result?.message);
+      return;
+    }
 
     if (result?.success) {
       const settings: Settings = {
@@ -45,6 +57,7 @@ export const useSettingStore = create<Store>((set, get) => ({
       };
       await AsyncStorage.setItem("sw_settings", JSON.stringify(settings));
       set({ isEnableBiometricAuth: false });
+      Alert.alert("Success", "Biometric authentication disabled.");
     }
   },
 }));
