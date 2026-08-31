@@ -1,5 +1,5 @@
-import { useGlobalStyle } from '@/src/shared/styles/globalStyle';
-import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
+import { useGlobalStyle } from '@/shared/styles/globalStyle';
+import { useThemeStore } from '@/shared/theme/store/useThemeStore';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';

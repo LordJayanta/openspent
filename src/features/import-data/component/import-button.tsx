@@ -1,5 +1,5 @@
-import Button from '@/src/shared/components/button';
-import { Transaction } from '@/src/shared/db/schema';
+import Button from '@/shared/components/button';
+import { Transaction } from '@/shared/db/schema';
 import * as DocumentPicker from 'expo-document-picker';
 import { File } from 'expo-file-system';
 import { router } from 'expo-router';

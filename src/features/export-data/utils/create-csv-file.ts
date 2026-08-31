@@ -1,11 +1,9 @@
-import { Transaction } from "@/src/shared/db/schema";
+import { Transaction } from "@/shared/db/schema";
 import { File, Paths } from "expo-file-system";
 import Papa from "papaparse";
 import { prepareCSVData } from "./prepare-csv-data";
 
 export const createCSVFile = (transactions: Transaction[]) => {
-  let fileUri: string | undefined = undefined;
-
   /**
    * create csv data
    */

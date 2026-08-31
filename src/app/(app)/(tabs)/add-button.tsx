@@ -1,4 +1,4 @@
-import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
+import { useThemeStore } from '@/shared/theme/store/useThemeStore';
 import { MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from "expo-router";

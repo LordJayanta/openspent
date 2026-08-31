@@ -1,4 +1,4 @@
-import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
+import { useThemeStore } from '@/shared/theme/store/useThemeStore';
 import { Picker } from '@react-native-picker/picker';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';

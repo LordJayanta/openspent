@@ -1,5 +1,5 @@
-import { useUserStore } from '@/src/features/user/store/useUserStore';
-import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
+import { useUserStore } from '@/features/user/store/useUserStore';
+import { useThemeStore } from '@/shared/theme/store/useThemeStore';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';

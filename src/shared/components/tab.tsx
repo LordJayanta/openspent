@@ -1,4 +1,4 @@
-import { useUserStore } from '@/src/features/user/store/useUserStore'
+import { useUserStore } from '@/features/user/store/useUserStore'
 import { Ionicons } from '@expo/vector-icons'
 import { Href, router } from 'expo-router'
 import React from 'react'

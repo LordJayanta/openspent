@@ -1,8 +1,8 @@
-import TransactionItem from '@/src/features/transactions/components/transaction-item';
-import { useTransactionStore } from '@/src/features/transactions/store/useTransactionStore';
-import NoTransactionsFound from '@/src/shared/components/no-data-found';
-import Container from '@/src/shared/components/ui/container';
-import SectionHeader from '@/src/shared/components/ui/section-header';
+import TransactionItem from '@/features/transactions/components/transaction-item';
+import { useTransactionStore } from '@/features/transactions/store/useTransactionStore';
+import NoTransactionsFound from '@/shared/components/no-data-found';
+import Container from '@/shared/components/ui/container';
+import SectionHeader from '@/shared/components/ui/section-header';
 import React from 'react';
 import { View } from 'react-native';
 

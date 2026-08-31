@@ -1,10 +1,9 @@
-import { useInsightsStore } from '@/src/features/insights/store/useInsightsStore';
-import { useTransactionStore } from '@/src/features/transactions/store/useTransactionStore';
-import { useUserStore } from '@/src/features/user/store/useUserStore';
-import { SummaryType } from '@/src/shared/common.types';
-import Amount from '@/src/shared/components/Amount';
-import Container from '@/src/shared/components/ui/container';
-import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
+import { useInsightsStore } from '@/features/insights/store/useInsightsStore';
+import { useTransactionStore } from '@/features/transactions/store/useTransactionStore';
+import { SummaryType } from '@/shared/common.types';
+import Amount from '@/shared/components/Amount';
+import Container from '@/shared/components/ui/container';
+import { useThemeStore } from '@/shared/theme/store/useThemeStore';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useMemo } from 'react';
 import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
@@ -17,9 +16,7 @@ type Props = {
 export default function ReportCard({ summary }: Props) {
     const { width } = useWindowDimensions();
     const styles = useStyles();
-    const { COLORS, TYPOGRAPHY } = useThemeStore();
-
-    const { currencySymbol } = useUserStore();
+    const { COLORS } = useThemeStore();
     const { transactions } = useTransactionStore();
     const { selectedMonth, balance, expense, income, loadMonthlySummary } = useInsightsStore();
 

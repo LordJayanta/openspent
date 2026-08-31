@@ -1,4 +1,4 @@
-import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
+import { useThemeStore } from '@/shared/theme/store/useThemeStore';
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import { View } from 'react-native';

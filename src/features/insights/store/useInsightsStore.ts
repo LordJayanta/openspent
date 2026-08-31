@@ -1,4 +1,4 @@
-import { Transaction } from "@/src/shared/db/schema";
+import { Transaction } from "@/shared/db/schema";
 import { create } from "zustand";
 import { getGroupedMonthlyTransactions } from "../../transactions/utils/get-grouped-monthly-transactions";
 

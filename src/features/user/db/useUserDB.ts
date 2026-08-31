@@ -1,5 +1,5 @@
-import { db, initDb } from "@/src/shared/db/database";
-import { user, type User } from "@/src/shared/db/schema";
+import { db, initDb } from "@/shared/db/database";
+import { user, type User } from "@/shared/db/schema";
 import { eq } from "drizzle-orm";
 import { SQLiteRunResult } from "expo-sqlite";
 

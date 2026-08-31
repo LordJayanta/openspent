@@ -1,5 +1,5 @@
-import SafeScreen from "@/src/shared/components/ui/safe-screen";
-import { useThemeStore } from "@/src/shared/theme/store/useThemeStore";
+import SafeScreen from "@/shared/components/ui/safe-screen";
+import { useThemeStore } from "@/shared/theme/store/useThemeStore";
 import { Slot } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";

@@ -1,4 +1,4 @@
-import { useUserStore } from '@/src/features/user/store/useUserStore';
+import { useUserStore } from '@/features/user/store/useUserStore';
 import React from 'react';
 import { StyleProp, StyleSheet, Text, TextStyle, View } from 'react-native';
 import { useThemeStore } from '../theme/store/useThemeStore';

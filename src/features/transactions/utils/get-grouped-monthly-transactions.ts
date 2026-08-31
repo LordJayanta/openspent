@@ -1,4 +1,4 @@
-import { Transaction } from "@/src/shared/db/schema";
+import { Transaction } from "@/shared/db/schema";
 
 // Definition matching your exact desired UI schema format
 export type MonthlyGroup = {

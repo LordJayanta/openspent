@@ -1,4 +1,4 @@
-import { IoniconsName } from '@/src/shared/type/type'
+import { IoniconsName } from '@/shared/type/type'
 import { Ionicons } from '@expo/vector-icons'
 import { Image } from 'expo-image'
 import React from 'react'

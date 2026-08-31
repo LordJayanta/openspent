@@ -1,11 +1,10 @@
-import Amount from '@/src/shared/components/Amount';
-import Container from '@/src/shared/components/ui/container';
-import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
-import { IoniconsName } from '@/src/shared/type/type';
+import Amount from '@/shared/components/Amount';
+import Container from '@/shared/components/ui/container';
+import { useThemeStore } from '@/shared/theme/store/useThemeStore';
+import { IoniconsName } from '@/shared/type/type';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { useUserStore } from '../../user/store/useUserStore';
 
 export type SummaryCardType = {
     iconName: IoniconsName;
@@ -19,8 +18,6 @@ export type SummaryCardType = {
 export default function SummaryCard({ amount, iconName, percentageChange, tenure = 'Month', title, inverse = false }: SummaryCardType) {
     const { COLORS } = useThemeStore();
     const styles = useStyle();
-
-    const { currencySymbol } = useUserStore();
 
     const baseColor = inverse ? COLORS.semantic.warning.base : COLORS.semantic.success.base;
     const alterColor = inverse ? COLORS.semantic.success.base : COLORS.semantic.warning.base;

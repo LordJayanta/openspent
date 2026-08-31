@@ -1,5 +1,5 @@
-import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
-import { IoniconsName } from '@/src/shared/type/type';
+import { useThemeStore } from '@/shared/theme/store/useThemeStore';
+import { IoniconsName } from '@/shared/type/type';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';

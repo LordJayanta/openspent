@@ -1,10 +1,10 @@
-import ExportAndSaveButton from '@/src/features/export-data/components/export-and-save-button';
-import ExportAndShareButton from '@/src/features/export-data/components/export-and-share-button';
-import AppBar from '@/src/shared/components/ui/app-bar';
-import Container from '@/src/shared/components/ui/container';
-import Section from '@/src/shared/components/ui/section';
-import { useGlobalStyle } from '@/src/shared/styles/globalStyle';
-import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
+import ExportAndSaveButton from '@/features/export-data/components/export-and-save-button';
+import ExportAndShareButton from '@/features/export-data/components/export-and-share-button';
+import AppBar from '@/shared/components/ui/app-bar';
+import Container from '@/shared/components/ui/container';
+import Section from '@/shared/components/ui/section';
+import { useGlobalStyle } from '@/shared/styles/globalStyle';
+import { useThemeStore } from '@/shared/theme/store/useThemeStore';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import React from 'react';

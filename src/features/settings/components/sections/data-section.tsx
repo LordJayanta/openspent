@@ -1,4 +1,4 @@
-import { IoniconsName } from '@/src/shared/type/type';
+import { IoniconsName } from '@/shared/type/type';
 import { router } from 'expo-router';
 import React from 'react';
 import { Alert } from 'react-native';

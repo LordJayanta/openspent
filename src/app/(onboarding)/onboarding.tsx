@@ -1,10 +1,10 @@
-import EnterApp from '@/src/features/onboarding/components/EnterApp';
-import Input from '@/src/features/onboarding/components/Input';
-import OnboardScreen, { type OnboardingData } from '@/src/features/onboarding/components/OnboardScreen';
-import OnbordForm from '@/src/features/onboarding/components/OnbordForm';
-import Select from '@/src/features/onboarding/components/Select';
-import { useUserStore } from '@/src/features/user/store/useUserStore';
-import { CURRENCIES } from '@/src/shared/constant/CURRENCIES';
+import EnterApp from '@/features/onboarding/components/EnterApp';
+import Input from '@/features/onboarding/components/Input';
+import OnboardScreen, { type OnboardingData } from '@/features/onboarding/components/OnboardScreen';
+import OnbordForm from '@/features/onboarding/components/OnbordForm';
+import Select from '@/features/onboarding/components/Select';
+import { useUserStore } from '@/features/user/store/useUserStore';
+import { CURRENCIES } from '@/shared/constant/CURRENCIES';
 import { router } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { Alert, Animated, StyleSheet, useWindowDimensions, View } from 'react-native';
@@ -12,13 +12,13 @@ import { ExpandingDot } from "react-native-animated-pagination-dots";
 import PagerView from 'react-native-pager-view';
 
 
-import chooseCurrencyImg from "@/src/features/onboarding/assets/img/choose-currency-green-shadow-1x1.webp";
-import noDataColocationImg from "@/src/features/onboarding/assets/img/no-data-colocation-1x1.webp";
-import noWifiImg from "@/src/features/onboarding/assets/img/No-Wi-Fi-under-glowing-green-sky-1x1.webp";
-import privacyShieldImg from "@/src/features/onboarding/assets/img/privacy-shield-1x1.webp";
-import successImg from "@/src/features/onboarding/assets/img/success-1x1.webp";
-import userImg from "@/src/features/onboarding/assets/img/user-1x1.webp";
-import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
+import chooseCurrencyImg from "@/features/onboarding/assets/img/choose-currency-green-shadow-1x1.webp";
+import noDataColocationImg from "@/features/onboarding/assets/img/no-data-colocation-1x1.webp";
+import noWifiImg from "@/features/onboarding/assets/img/No-Wi-Fi-under-glowing-green-sky-1x1.webp";
+import privacyShieldImg from "@/features/onboarding/assets/img/privacy-shield-1x1.webp";
+import successImg from "@/features/onboarding/assets/img/success-1x1.webp";
+import userImg from "@/features/onboarding/assets/img/user-1x1.webp";
+import { useThemeStore } from '@/shared/theme/store/useThemeStore';
 
 export default function Onboarding() {
   const [currentPage, setCurrentPage] = useState(0);

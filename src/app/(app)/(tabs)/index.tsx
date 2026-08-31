@@ -1,13 +1,13 @@
-import RecentTransactions from "@/src/features/dashboard/components/sections/recent-transactions";
-import ReportCard from "@/src/features/dashboard/components/sections/report-card";
-import { useTransactionStore } from "@/src/features/transactions/store/useTransactionStore";
-import FooterBranding from "@/src/shared/components/footer-branding";
+import RecentTransactions from "@/features/dashboard/components/sections/recent-transactions";
+import ReportCard from "@/features/dashboard/components/sections/report-card";
+import { useTransactionStore } from "@/features/transactions/store/useTransactionStore";
+import FooterBranding from "@/shared/components/footer-branding";
 
-import { getGreetingMessage } from "@/src/features/dashboard/utils/get-greeting-message";
-import AppBar from "@/src/shared/components/ui/app-bar";
-import Section from "@/src/shared/components/ui/section";
-import { useGlobalStyle } from "@/src/shared/styles/globalStyle";
-import { useThemeStore } from "@/src/shared/theme/store/useThemeStore";
+import { getGreetingMessage } from "@/features/dashboard/utils/get-greeting-message";
+import AppBar from "@/shared/components/ui/app-bar";
+import Section from "@/shared/components/ui/section";
+import { useGlobalStyle } from "@/shared/styles/globalStyle";
+import { useThemeStore } from "@/shared/theme/store/useThemeStore";
 import { useEffect, useState } from "react";
 import { RefreshControl, ScrollView, Text, View } from "react-native";
 

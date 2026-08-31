@@ -1,6 +1,6 @@
-import { useSettingStore } from '@/src/features/settings/store/useSettingStore';
-import OSSwitch from '@/src/shared/components/ui/os-switch';
-import { IoniconsName } from '@/src/shared/type/type';
+import { useSettingStore } from '@/features/settings/store/useSettingStore';
+import OSSwitch from '@/shared/components/ui/os-switch';
+import { IoniconsName } from '@/shared/type/type';
 import React from 'react';
 import SettingContainer from '../ui/setting-container';
 import { SettingItem } from '../ui/setting-item';

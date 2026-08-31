@@ -1,4 +1,4 @@
-import Button from '@/src/shared/components/button';
+import Button from '@/shared/components/button';
 import { File } from 'expo-file-system';
 import { router } from 'expo-router';
 import * as Sharing from 'expo-sharing';

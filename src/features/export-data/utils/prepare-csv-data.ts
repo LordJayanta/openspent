@@ -1,4 +1,4 @@
-import { Transaction } from "@/src/shared/db/schema";
+import { Transaction } from "@/shared/db/schema";
 
 /**
  * # Create CSV Data

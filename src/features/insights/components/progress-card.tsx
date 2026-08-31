@@ -1,12 +1,11 @@
-import { useTransactionStore } from '@/src/features/transactions/store/useTransactionStore';
-import Amount from '@/src/shared/components/Amount';
-import Container from '@/src/shared/components/ui/container';
-import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
+import { useTransactionStore } from '@/features/transactions/store/useTransactionStore';
+import Amount from '@/shared/components/Amount';
+import Container from '@/shared/components/ui/container';
+import { useThemeStore } from '@/shared/theme/store/useThemeStore';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useMemo } from 'react';
 import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { PieChart, pieDataItem } from 'react-native-gifted-charts';
-import { useUserStore } from '../../user/store/useUserStore';
 
 type Props = {
     balance: number;
@@ -14,12 +13,10 @@ type Props = {
 }
 
 export default function ProgressCard({ balance, percentageChange }: Props) {
-    const { COLORS, TYPOGRAPHY } = useThemeStore();
+    const { COLORS } = useThemeStore();
     const { summary } = useTransactionStore();
     const { width } = useWindowDimensions();
     const styles = useStyles();
-
-    const { currencySymbol } = useUserStore();
 
     // Scale chart radius off screen width, clamped for small phones / tablets.
     const chartRadius = useMemo(() => {

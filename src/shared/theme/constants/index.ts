@@ -1,5 +1,5 @@
-import * as dark from "@/src/shared/theme/constants/dark/index";
-import * as light from "@/src/shared/theme/constants/light/index";
+import * as dark from "@/shared/theme/constants/dark/index";
+import * as light from "@/shared/theme/constants/light/index";
 
 const themes = { dark, light } as const;
 

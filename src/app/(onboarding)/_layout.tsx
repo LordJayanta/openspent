@@ -1,5 +1,5 @@
-import { useUserStore } from "@/src/features/user/store/useUserStore";
-import PageLoader from "@/src/shared/components/page-loader";
+import { useUserStore } from "@/features/user/store/useUserStore";
+import PageLoader from "@/shared/components/page-loader";
 import { Stack } from "expo-router";
 
 export default function OnboardingLayout() {

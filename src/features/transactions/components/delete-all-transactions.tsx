@@ -1,4 +1,4 @@
-import Button from '@/src/shared/components/button';
+import Button from '@/shared/components/button';
 import { router } from 'expo-router';
 import React from 'react';
 import { Alert } from 'react-native';

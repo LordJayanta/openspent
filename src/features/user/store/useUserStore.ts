@@ -1,5 +1,5 @@
-import { CURRENCIES } from "@/src/shared/constant/CURRENCIES";
-import { type User } from "@/src/shared/db/schema";
+import { CURRENCIES } from "@/shared/constant/CURRENCIES";
+import { type User } from "@/shared/db/schema";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";

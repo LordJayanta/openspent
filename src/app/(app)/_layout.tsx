@@ -1,10 +1,10 @@
-import LockScreen from "@/src/features/biometric-auth/components/lockScreen";
-import { useLocalAuthStore } from "@/src/features/biometric-auth/store/useLocalAuthStore";
-import { useSettingStore } from "@/src/features/settings/store/useSettingStore";
-import { useTransactionStore } from "@/src/features/transactions/store/useTransactionStore";
-import { useUserStore } from "@/src/features/user/store/useUserStore";
-import PageLoader from "@/src/shared/components/page-loader";
-import { useThemeStore } from "@/src/shared/theme/store/useThemeStore";
+import LockScreen from "@/features/biometric-auth/components/lockScreen";
+import { useLocalAuthStore } from "@/features/biometric-auth/store/useLocalAuthStore";
+import { useSettingStore } from "@/features/settings/store/useSettingStore";
+import { useTransactionStore } from "@/features/transactions/store/useTransactionStore";
+import { useUserStore } from "@/features/user/store/useUserStore";
+import PageLoader from "@/shared/components/page-loader";
+import { useThemeStore } from "@/shared/theme/store/useThemeStore";
 import { Redirect, Stack } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { AppState, AppStateStatus } from "react-native";

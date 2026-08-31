@@ -1,5 +1,5 @@
-import Amount from '@/src/shared/components/Amount';
-import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
+import Amount from '@/shared/components/Amount';
+import { useThemeStore } from '@/shared/theme/store/useThemeStore';
 import { Ionicons, } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import React from 'react';

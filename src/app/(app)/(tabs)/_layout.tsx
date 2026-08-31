@@ -1,5 +1,5 @@
 import AddButton from "@/app/(app)/(tabs)/add-button";
-import { useThemeStore } from "@/src/shared/theme/store/useThemeStore";
+import { useThemeStore } from "@/shared/theme/store/useThemeStore";
 import { Ionicons } from "@expo/vector-icons";
 import { router, Tabs } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";

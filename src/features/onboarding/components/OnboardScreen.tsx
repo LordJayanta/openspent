@@ -1,4 +1,4 @@
-import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
+import { useThemeStore } from '@/shared/theme/store/useThemeStore';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { Image, ImageSourcePropType, Text, useWindowDimensions, View } from 'react-native';

@@ -1,9 +1,9 @@
-import { useUserStore } from '@/src/features/user/store/useUserStore';
-import OSSelect from '@/src/shared/components/ui/os-select';
-import { CURRENCIES } from '@/src/shared/constant/CURRENCIES';
-import { themeMap } from '@/src/shared/theme/constants';
-import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
-import { IoniconsName } from '@/src/shared/type/type';
+import { useUserStore } from '@/features/user/store/useUserStore';
+import OSSelect from '@/shared/components/ui/os-select';
+import { CURRENCIES } from '@/shared/constant/CURRENCIES';
+import { themeMap } from '@/shared/theme/constants';
+import { useThemeStore } from '@/shared/theme/store/useThemeStore';
+import { IoniconsName } from '@/shared/type/type';
 import React from 'react';
 import SettingContainer from '../ui/setting-container';
 import { SettingItem } from '../ui/setting-item';

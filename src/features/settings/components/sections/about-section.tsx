@@ -1,7 +1,7 @@
-import { OpenWebBrowser } from '@/src/features/web-browser/utils/web-browser';
-import Container from '@/src/shared/components/ui/container';
-import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
-import { IoniconsName } from '@/src/shared/type/type';
+import { OpenWebBrowser } from '@/features/web-browser/utils/web-browser';
+import Container from '@/shared/components/ui/container';
+import { useThemeStore } from '@/shared/theme/store/useThemeStore';
+import { IoniconsName } from '@/shared/type/type';
 import { Ionicons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 import { ExternalPathString, Href } from 'expo-router';

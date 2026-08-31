@@ -1,4 +1,4 @@
-import Button from '@/src/shared/components/button';
+import Button from '@/shared/components/button';
 import { Directory, File } from 'expo-file-system';
 import { router } from 'expo-router';
 import React from 'react';

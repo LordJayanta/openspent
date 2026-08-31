@@ -1,5 +1,5 @@
 
-import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
+import { useThemeStore } from '@/shared/theme/store/useThemeStore';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 

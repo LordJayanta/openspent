@@ -3,8 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
 
-import { type IconName } from '@/src/features/transactions/constant/Category';
-import { useThemeStore } from "@/src/shared/theme/store/useThemeStore";
+import { type IconName } from '@/features/transactions/constant/Category';
+import { useThemeStore } from "@/shared/theme/store/useThemeStore";
 
 export default function CategoryItem({ active = false, name, icon }: { active?: boolean, name: string, icon: IconName }) {
     const styles = useStyles();

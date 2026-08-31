@@ -1,4 +1,4 @@
-import { useThemeStore } from "@/src/shared/theme/store/useThemeStore";
+import { useThemeStore } from "@/shared/theme/store/useThemeStore";
 import { StyleSheet } from "react-native";
 
 export const useStyle = () => {

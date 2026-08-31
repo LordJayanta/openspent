@@ -1,9 +1,9 @@
 
-import { insightsDb } from '@/src/features/insights/db/insightsDb';
-import { useTransactionStore } from '@/src/features/transactions/store/useTransactionStore';
-import Container from '@/src/shared/components/ui/container';
-import SectionHeader from '@/src/shared/components/ui/section-header';
-import { useThemeStore } from '@/src/shared/theme/store/useThemeStore';
+import { insightsDb } from '@/features/insights/db/insightsDb';
+import { useTransactionStore } from '@/features/transactions/store/useTransactionStore';
+import Container from '@/shared/components/ui/container';
+import SectionHeader from '@/shared/components/ui/section-header';
+import { useThemeStore } from '@/shared/theme/store/useThemeStore';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { BarChart, barDataItem } from 'react-native-gifted-charts';
