@@ -8,13 +8,13 @@ import AppBar from "@/shared/components/ui/app-bar";
 import Section from "@/shared/components/ui/section";
 import { useGlobalStyle } from "@/shared/styles/globalStyle";
 import { useThemeStore } from "@/shared/theme/store/useThemeStore";
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import { RefreshControl, ScrollView, Text, View } from "react-native";
 
 
 
 export default function Index() {
-  const [greetingMessage, setGreetingMessage] = useState<string>("Welcome.!👋");
+  const greetingMessage = useMemo(() => getGreetingMessage(), []);
   // Styles
   const { COLORS, TYPOGRAPHY } = useThemeStore();
   const globalStyles = useGlobalStyle();
@@ -29,10 +29,6 @@ export default function Index() {
     setRefreshTransactions(false);
   }
 
-  useEffect(() => {
-    const message = getGreetingMessage();
-    setGreetingMessage(message);
-  }, []);
   return (
     <ScrollView
       style={[globalStyles.baseScreen]} //contentContainerStyle

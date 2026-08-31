@@ -1,30 +1,26 @@
 
 import TransactionItem from '@/features/transactions/components/transaction-item'
 import { useTransactionStore } from '@/features/transactions/store/useTransactionStore'
-import { getGroupedMonthlyTransactions, MonthlyGroup } from '@/features/transactions/utils/get-grouped-monthly-transactions'
+import { getGroupedMonthlyTransactions } from '@/features/transactions/utils/get-grouped-monthly-transactions'
 import NoTransactionsFound from '@/shared/components/no-data-found'
 import AppBar from '@/shared/components/ui/app-bar'
 import Container from '@/shared/components/ui/container'
 import Section from '@/shared/components/ui/section'
 import { useThemeStore } from '@/shared/theme/store/useThemeStore'
 import { FlashList } from "@shopify/flash-list"
-import React, { useEffect, useState } from 'react'
+import { useMemo } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
 export default function Transactions() {
-  const [groupedMonthlyTransactions, setGroupedMonthlyTransactions] = useState<MonthlyGroup[]>([])
-
   const { COLORS, TYPOGRAPHY } = useThemeStore();
   const { transactions } = useTransactionStore();
 
+  const groupedMonthlyTransactions = useMemo(
+    () => getGroupedMonthlyTransactions(transactions),
+    [transactions],
+  );
 
   const styles = useStyle();
-
-
-  useEffect(() => {
-    const res = getGroupedMonthlyTransactions(transactions)
-    setGroupedMonthlyTransactions(res)
-  }, [transactions])
 
   return (
     <View style={{ flex: 1, backgroundColor: COLORS.background.base }}>

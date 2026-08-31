@@ -7,7 +7,7 @@ import SectionHeader from '@/shared/components/ui/section-header'
 import { useThemeStore } from '@/shared/theme/store/useThemeStore'
 import { Ionicons } from '@expo/vector-icons'
 import { FlashList } from '@shopify/flash-list'
-import React, { useEffect } from 'react'
+import { useMemo } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
 
@@ -23,23 +23,16 @@ export default function CategoryOverview() {
   const { transactions, summary } = useTransactionStore();
   const styles = useStyle();
 
-  const [data, setData] = React.useState<DataType[]>([]);
-
-  const generateChartData = () => {
-    // Filter Expenses
+  const data = useMemo(() => {
     const expense = transactions.filter(item => item.amount < 0);
 
-    // Group and sum by category
     const grouped = expense.reduce((acc: Record<string, DataType>, trnx) => {
       const amount = Math.abs(trnx.amount);
       const color = CATEGORIES.filter(t => t.name === trnx.category)[0].color;
 
-      // if Category is present update value
       if (acc[trnx.category]) {
         acc[trnx.category].amount += amount;
-      }
-      // if Category dos't exist create new one
-      else {
+      } else {
         acc[trnx.category] = {
           amount: amount,
           title: trnx.category,
@@ -51,19 +44,11 @@ export default function CategoryOverview() {
       return acc;
     }, {})
 
-    // Recalculate percentage after grouping so totals are used
     return Object.values(grouped).map(item => ({
       ...item,
       percentage: summary.expense > 0 ? Math.round((item.amount / summary.expense) * 100) : 0,
     }));
-  }
-
-  useEffect(() => {
-    // regenerate chart data whenever transactions or summary change
-    const data = generateChartData();
-    setData(data);
-  }, [transactions, summary])
-
+  }, [transactions, summary]);
 
   return (
     <View>

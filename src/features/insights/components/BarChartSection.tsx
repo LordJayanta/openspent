@@ -4,7 +4,7 @@ import { useTransactionStore } from '@/features/transactions/store/useTransactio
 import Container from '@/shared/components/ui/container';
 import SectionHeader from '@/shared/components/ui/section-header';
 import { useThemeStore } from '@/shared/theme/store/useThemeStore';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { BarChart, barDataItem } from 'react-native-gifted-charts';
 import { useUserStore } from '../../user/store/useUserStore';
@@ -17,17 +17,27 @@ export const BarChartSection = () => {
     const [barData, setBarData] = useState<barDataItem[]>([]);
     const { currencySymbol } = useUserStore();
 
-    const loadMonthlyData = async () => {
-        const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-        const data = await insightsDb.getIncomeData();
-        if (!data) return;
+    useEffect(() => {
+        let isMounted = true;
 
-        const finalData = data.map((item) => ({ value: item.totalIncome, label: months[Number(item.month.charAt(6))] }))
-        setBarData(finalData);
-    }
+        const loadMonthlyData = async () => {
+            const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+            const data = await insightsDb.getIncomeData();
+            if (!data || !isMounted) return;
 
+            const finalData = data.map((item) => ({ value: item.totalIncome, label: months[Number(item.month.charAt(6))] }));
+            // The database fetch is async and must update state after the effect starts,
+            // so this is a targeted exception for the rule that otherwise blocks external data sync.
+             
+            setBarData(finalData);
+        };
 
-    useEffect(() => { loadMonthlyData() }, [])
+        void loadMonthlyData();
+
+        return () => {
+            isMounted = false;
+        };
+    }, []);
 
     return (
 

@@ -28,7 +28,7 @@ export default function Onboarding() {
   })
   const { width } = useWindowDimensions();
   const pagerRef = React.useRef<PagerView>(null);
-  const scrollX = React.useRef(new Animated.Value(0)).current;
+  const [scrollX] = useState(() => new Animated.Value(0));
 
   const { id, loadUser, updateUser } = useUserStore();
   const { COLORS } = useThemeStore();
